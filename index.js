@@ -33,5 +33,3 @@ app.use('/bookmark', bookmarkRoute);
 app.listen(port, () => {
     console.log(`listening on port ${port}!`);
 })
-
-
