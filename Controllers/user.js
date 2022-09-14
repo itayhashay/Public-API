@@ -1,5 +1,6 @@
 const express = require('express'),
   User = require('../Models/user'),
+  Bookmark = require('../Models/bookmark'),
   router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
   const { id } = req.params;
-  const user = await User.findByIdAndUpdate(id, req.body);
+  const user = await User.findByIdAndUpdate(id, req.body, { new: true });
   await user.save();
   res.send({ data: user });
 })
@@ -30,7 +31,7 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const user = await User.findByIdAndDelete(id);
-  await user.save()
+  const bookmark = await Bookmark.deleteMany({ userId: user._id });
   res.send({ data: user });
 })
 
