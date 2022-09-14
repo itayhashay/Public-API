@@ -15,6 +15,12 @@ router.get('/:id', async (req, res) => {
   res.send({ data: api })
 })
 
+router.get('/search', async (req, res) => {
+  let { query } = req;
+  const api = await Api.find({ query })
+  res.send({ data: api })
+})
+
 router.post('/', async (req, res) => {
   const newApi = new Api(req.body);
   await newApi.save();

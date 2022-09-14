@@ -14,6 +14,12 @@ router.get('/:id', async (req, res) => {
   res.send({ data: bookmark })
 })
 
+router.get('/search', async (req, res) => {
+  let { query } = req;
+  const bookmark = await Bookmark.find({ query });
+  res.send({ data: bookmark });
+})
+
 router.post('/', async (req, res) => {
   const newBookmark = new Bookmark(req.body);
   await newBookmark.save();

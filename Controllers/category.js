@@ -16,6 +16,12 @@ router.get('/:id', async (req, res) => {
   res.send({ data: category })
 })
 
+router.get('/search', async (req, res) => {
+  let { query } = req;
+  const category = await Category.find({ query });
+  res.send({ data: category });
+})
+
 router.post('/', async (req, res) => {
   const newCategory = new Category(req.body);
   await newCategory.save();
