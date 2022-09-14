@@ -1,5 +1,7 @@
 const express = require('express'),
   Category = require('../Models/category'),
+  Api = require('../Models/api'),
+  Bookmark = require('../Models/bookmark'),
   router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -10,8 +12,8 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
-  const categiry = await Category.findById(id);
-  res.send({ data: categiry })
+  const category = await Category.findById(id);
+  res.send({ data: category })
 })
 
 router.post('/', async (req, res) => {
@@ -22,16 +24,20 @@ router.post('/', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
   const { id } = req.params;
-  const categiry = await Category.findByIdAndUpdate(id, req.body);
-  await categiry.save();
-  res.send({ data: categiry });
+  let category = await Category.findByIdAndUpdate(id, req.body, { new: true });
+  await category.save();
+  res.send({ data: category });
 })
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
-  const categiry = await Category.findByIdAndDelete(id);
-  await categiry.save()
-  res.send({ data: categiry });
+  const category = await Category.findByIdAndDelete(id);
+  const apis = await Api.find({ categoryId: category._id });
+  await Api.deleteMany({ categoryId: category._id });
+  for (let api of apis) {
+    await Bookmark.deleteMany({ apiId: api._id });
+  }
+  res.send({ data: category });
 })
 
 
