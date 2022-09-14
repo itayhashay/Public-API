@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
   const { id } = req.params;
-  let category = await Category.findByIdAndUpdate(id, req.body, { new: true });
+  const category = await Category.findByIdAndUpdate(id, req.body, { new: true });
   await category.save();
   res.send({ data: category });
 })
