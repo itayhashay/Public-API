@@ -5,13 +5,18 @@ const express = require('express'),
 
 router.get('/', async (req, res) => {
   const users = await User.find({});
-  console.log(users);
   res.send({ data: users })
 })
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
+  res.send({ data: user })
+})
+
+router.get('/search', async (req, res) => {
+  let { query } = req;
+  const user = await User.find({ query });
   res.send({ data: user })
 })
 
@@ -34,5 +39,12 @@ router.delete('/:id', async (req, res) => {
   const bookmark = await Bookmark.deleteMany({ userId: user._id });
   res.send({ data: user });
 })
+
+router.post('/login', async (req, res) => {
+  const { username, password } = req.params;
+  const user = await User.findOne({ username: username });
+  res.send({ data: { loggedIn: password == user.password, userType: user.userType } });
+})
+
 
 module.exports = router;
