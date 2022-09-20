@@ -14,6 +14,12 @@ router.get('/:id', async (req, res) => {
   res.send({ data: bookmark })
 })
 
+router.get('/search', async (req, res) => {
+  let { query } = req;
+  const bookmark = await Bookmark.find({ query });
+  res.send({ data: bookmark });
+})
+
 router.post('/', async (req, res) => {
   const newBookmark = new Bookmark(req.body);
   await newBookmark.save();
@@ -22,7 +28,7 @@ router.post('/', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
   const { id } = req.params;
-  const bookmark = await Bookmark.findByIdAndUpdate(id, req.body);
+  const bookmark = await Bookmark.findByIdAndUpdate(id, req.body, { new: true });
   await bookmark.save();
   res.send({ data: bookmark });
 })
@@ -30,7 +36,6 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const bookmark = await Bookmark.findByIdAndDelete(id);
-  await bookmark.save()
   res.send({ data: bookmark });
 })
 

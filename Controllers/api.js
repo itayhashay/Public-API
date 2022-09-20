@@ -1,5 +1,6 @@
 const express = require('express'),
   Api = require('../Models/api'),
+  Bookmark = require('../Models/bookmark'),
   router = express.Router();
 
 router.get('/', async (req, res) => {
@@ -14,6 +15,12 @@ router.get('/:id', async (req, res) => {
   res.send({ data: api })
 })
 
+router.get('/search', async (req, res) => {
+  let { query } = req;
+  const api = await Api.find({ query })
+  res.send({ data: api })
+})
+
 router.post('/', async (req, res) => {
   const newApi = new Api(req.body);
   await newApi.save();
@@ -22,7 +29,7 @@ router.post('/', async (req, res) => {
 
 router.post('/:id', async (req, res) => {
   const { id } = req.params;
-  const api = await Api.findByIdAndUpdate(id, req.body);
+  const api = await Api.findByIdAndUpdate(id, req.body, { new: true });
   await api.save();
   res.send({ data: api });
 })
@@ -30,7 +37,7 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const api = await Api.findByIdAndDelete(id);
-  await api.save()
+  const bookmark = await Bookmark.deleteMany({ apiId: api._id });
   res.send({ data: api });
 })
 
