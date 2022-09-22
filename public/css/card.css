@@ -1,0 +1,62 @@
+.card-custom{
+    width: 18rem;
+    height: 32rem;
+}
+
+.hover-border {
+    border-radius: 15px;
+    border-color: darkgray;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.hover-border:hover .display-hover{
+    display: block;
+}
+
+
+.hover-border:hover {
+    border-color: dimgray;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.hover-green:hover {
+    background-color: #14C38E !important;
+    color: #00FFAB !important;
+}
+
+.hover-orange:hover {
+    background-color: #F1A661 !important;
+    color: #ecc29a !important;
+}
+
+
+
+.card-text-custom {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+.card-bottom{
+    position:absolute;
+    bottom: 0;
+    width: 83%;
+}
+
+.card-img-custom{
+    width: 270px;
+    height: 245px;
+    object-fit: contain;
+}
+
+.small-img-icon {
+    width: 50px;
+    height:50px;
+    object-fit: contain;
+}
+
+.display-hover {
+    display: none;
+}
