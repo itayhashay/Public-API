@@ -1,7 +1,6 @@
 const express = require('express'),
     expressLayouts = require('express-ejs-layouts');
 
-
 let cards_mocks = [
     {
         id: "1",
@@ -65,6 +64,12 @@ let cards_mocks = [
     },
 ]
 
+let analytics = {
+    total_apis: "340",
+    total_users: "3400" ,
+    total_upvotes: "2500"
+}
+
 
 module.exports = function(app) {
     app.use(expressLayouts)
@@ -76,4 +81,14 @@ module.exports = function(app) {
         }
         )
     })
+
+    app.get('/admin', function(req, res){
+        res.render('dashboard',
+        { 
+            analytics: analytics,
+            layout: 'Layouts/dashboard.ejs'
+        }
+        )
+    })
+
 };

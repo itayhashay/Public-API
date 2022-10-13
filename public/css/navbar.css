@@ -247,7 +247,8 @@ nav.close ~ .dashboard{
     left: 250px;
     display: flex;
     width: calc(100% - 250px);
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: initial;
     align-items: center;
     padding: 10px 14px;
     background-color: var(--panel-color);
@@ -266,7 +267,7 @@ nav.close ~ .dashboard .top{
 .dashboard .top .search-box{
     position: relative;
     height: 45px;
-    max-width: 600px;
+    max-width: 400px;
     width: 100%;
     margin: 0 30px;
 }
