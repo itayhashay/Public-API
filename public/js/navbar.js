@@ -22,6 +22,7 @@ modeToggle.addEventListener("click", () =>{
     }
 });
 
+
 sidebarToggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
     if(sidebar.classList.contains("close")){
@@ -30,3 +31,23 @@ sidebarToggle.addEventListener("click", () => {
         localStorage.setItem("status", "open");
     }
 })
+
+// this function bolds the current page in the navbar
+$(document).ready(function(){
+    $('ul li a').click(function(){
+        let spa = $('li a').find(".active-text");
+        spa.removeClass("active-text");
+        spa.addClass("link-name");
+        $(this).find("span").removeClass("link-name");
+        $(this).find("span").addClass("active-text");
+
+        let ico = $('li a').find(".active-icon");
+        ico.removeClass("active-icon");
+        ico.addClass("non-active-icon");
+        $(this).find("i").removeClass("non-active-icon");
+        $(this).find("i").addClass("active-icon");
+
+        $('li a').removeClass("active");
+        $(this).addClass("active");
+    });
+});

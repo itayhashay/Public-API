@@ -65,6 +65,41 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
     background: #3A3B3C;
 }
 
+.active{
+    content: "";
+    position: absolute;
+    border-radius: 6%;
+    background-color: #3A3B3C;
+}
+
+.active-text{
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 400;
+    transition: var(--tran-05);
+}
+
+.active-icon{
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+}
+
+.non-active-icon{
+    color: var(--black-light-color);
+}
+
+.text-color-grey{
+    color: var(--black-light-color);
+}
+
+.text-color-white{
+    color: #fff;
+}
+
 nav{
     position: fixed;
     top: 0;
@@ -146,7 +181,7 @@ body.dark li a:hover:before{
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--black-light-color);
+    /* color: var(--black-light-color); */
 }
 .menu-items li a .link-name{
     font-size: 18px;
@@ -158,14 +193,10 @@ nav.close li a .link-name{
     opacity: 0;
     pointer-events: none;
 }
-.nav-links li a:hover i,
-.nav-links li a:hover .link-name{
-    color: var(--panel-color);
-}
-
 .nav-links li a:hover i,.nav-links li a:hover .link-name{
     color: var(--panel-color);
 }
+
 
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name{
