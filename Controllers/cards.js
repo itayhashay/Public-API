@@ -90,7 +90,4 @@ module.exports = function(app) {
         }
         )
     })
-
-    app.get('ajax/manage-apis', function(req, res){
-        res.render('Ajax/manage-apis')
-})};
+}
