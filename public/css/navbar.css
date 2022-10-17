@@ -86,6 +86,7 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
     align-items: center;
     justify-content: center;
     color: #FFF;
+    text-shadow: #DDD;
 }
 
 .non-active-icon{
@@ -512,4 +513,11 @@ nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
     }
+}
+
+.load-more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
 }
