@@ -1,0 +1,47 @@
+<div id="main" class="manage-users-page">
+    <div class="activity">
+        <div class="title">
+            <i class="uil uil-arrow"></i>
+            <span class="text">All Users</span>
+        </div>
+
+        <div class="activity-data">
+            <div class="data hive">
+                <span class="data-title">username</span>
+                <% users.forEach(user => { %>
+                    <span class="data-list"><%= user.username %></span>
+                    <% });%>
+            </div>
+            <div class="data names">
+                <span class="data-title">First Name</span>
+                <% users.forEach(user => { %>
+                <span class="data-list"><%= user.firstName %></span>
+                <% });%>
+            </div>
+            <div class="data email">
+                <span class="data-title">Last Name</span>
+                <% users.forEach(user => { %>
+                    <span class="data-list"><%= user.lastName %></span>
+                    <% });%>
+            </div>
+            <div class="data joined">
+                <span class="data-title">Email</span>
+                <% users.forEach(user => { %>
+                    <span class="data-list"><%= user.email %></span>
+                    <% });%>
+            </div>
+            <div class="data type">
+                <span class="data-title">Birthday</span>
+                <% users.forEach(user => { %>
+                    <span class="data-list"><%= user.birthday %></span>
+                    <% });%>
+            </div>
+            <div class="data status">
+                <span class="data-title">User Type</span>
+                <% users.forEach(user => { %>
+                    <span class="data-list"><%= user.userType %></span>
+                    <% });%>
+            </div>
+        </div>
+    </div>
+</div>
