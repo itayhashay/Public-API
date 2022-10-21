@@ -10,6 +10,18 @@ router.get('/', async (req, res) => {
   res.send({ data: category })
 })
 
+router.get('/statistics', async (req, res) => {
+  const data = await Api.aggregate([
+    {
+      $group: {
+        _id: '$category',
+        count: { $sum: 1 } // this means that the count will increment by 1
+      }
+    }
+  ]);
+  res.send({ data })
+})
+
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const category = await Category.findById(id);
@@ -45,6 +57,5 @@ router.delete('/:id', async (req, res) => {
   }
   res.send({ data: category });
 })
-
 
 module.exports = router;
