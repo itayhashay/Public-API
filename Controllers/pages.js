@@ -1,5 +1,6 @@
 const express = require('express'),
-    expressLayouts = require('express-ejs-layouts');
+    expressLayouts = require('express-ejs-layouts'),
+    router = express.Router();
 
 let cards_mocks = [
     {
@@ -184,70 +185,70 @@ let users_mocks = [
     },
 ]
 
-module.exports = function (app) {
-    app.use(expressLayouts)
-    app.get('/', function (req, res) {
-        res.render('Cards',
-            {
-                cards: cards_mocks,
-                layout: 'Layouts/navbar.ejs'
-            }
-        )
-    })
-   
-    // admin path
-    app.get('/admin', function (req, res) {
-        res.render('dashboard',
-            {
-                analytics: analytics,
-                layout: 'Layouts/admin.ejs'
-            }
-        )
-    })
+router.use(expressLayouts)
+router.get('/', (req, res) => {
+    res.render('Cards',
+        {
+            cards: cards_mocks,
+            layout: 'Layouts/navbar.ejs'
+        }
+    )
+})
 
-    app.get('/dashboard', function (req, res) {
-        res.render('dashboard',
-            {
-                analytics: analytics,
-                layout: 'Layouts/main-div.ejs'
-            }
-        )
-    })
+// admin path
+router.get('/admin',  (req, res) => {
+    res.render('dashboard',
+        {
+            analytics: analytics,
+            layout: 'Layouts/admin.ejs'
+        }
+    )
+})
 
-    app.get('/manage-apis', function (req, res) {
-        res.render('manage-apis',
-            {
-                apis: apis_mocks,
-                layout: 'Layouts/main-div.ejs'
-            }
-        )
-    })
-    // admin path
-    app.get('/manage-users', function (req, res) {
-        res.render('manage-users',
-            {
-                users: users_mocks,
-                layout: 'Layouts/main-div.ejs'
-            }
-        )
-    })
+router.get('/dashboard',  (req, res) => {
+    res.render('dashboard',
+        {
+            analytics: analytics,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
 
-    app.get('/manage-categories', function (req, res) {
-        res.render('manage-categories',
-            {
-                categories: categories,
-                layout: 'Layouts/main-div.ejs'
-            }
-        )
-    })
+router.get('/manage-apis',  (req, res) => {
+    res.render('manage-apis',
+        {
+            apis: apis_mocks,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+// admin path
+router.get('/manage-users',  (req, res) => {
+    res.render('manage-users',
+        {
+            users: users_mocks,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
 
-    /* Isar - This is an example for you..*/
-    app.get('/latest-apis', function (req, res) {
-        res.render('latest-apis', // the name of the ejs file from the views folder
-            {
-                users: cards_mocks,
-                layout: 'Layouts/main-div.ejs' // you need to use this one
-            }
-        )
-    })
-}
+router.get('/manage-categories',  (req, res) => {
+    res.render('manage-categories',
+        {
+            categories: categories,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+
+/* Isar - This is an example for you..*/
+router.get('/latest-apis', (req, res) => {
+    res.render('latest-apis', // the name of the ejs file from the views folder
+        {
+            users: cards_mocks,
+            layout: 'Layouts/main-div.ejs' // you need to use this one
+        }
+    )
+})
+
+module.exports = router;

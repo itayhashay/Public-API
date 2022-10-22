@@ -11,12 +11,17 @@ const apiSchema = new mongoose.Schema({
         require: true,
         trim: true
     },
+    upvote: {
+        type: Number,
+        default: 0,
+        require: true
+    },
     url: {
         type: String,
         require: true,
         trim: true
     },
-    categoryId: {
+    category: {
         type: String,
         require: true
     }

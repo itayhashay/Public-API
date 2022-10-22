@@ -1,50 +1,66 @@
 const express = require('express'),
+  hash = require('object-hash'),
   User = require('../Models/user'),
   Bookmark = require('../Models/bookmark'),
   router = express.Router();
 
 router.get('/', async (req, res) => {
   const users = await User.find({});
+  for (let i = 0; i < users.length; i++) {
+    delete users[i]['_doc']["password"];
+  }
+  res.send({ data: users });
+})
+
+router.get('/search', async (req, res) => {
+  let { q } = req.query;
+  const users = await User.find({
+    $or: [{ username: { $regex: q, $options: 'i' } }, { firstName: { $regex: q, $options: 'i' } }, { lastName: { $regex: q, $options: 'i' } }, { gender: { $regex: q, $options: 'i' } }, { email: { $regex: q, $options: 'i' } }, { userType: { $regex: q, $options: 'i' } }]
+  });
+  for (let i = 0; i < users.length; i++) {
+    delete users[i]['_doc']["password"];
+  }
   res.send({ data: users })
 })
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
-  res.send({ data: user })
-})
-
-router.get('/search', async (req, res) => {
-  let { query } = req;
-  const user = await User.find({ query });
+  delete user['_doc']["password"];
   res.send({ data: user })
 })
 
 router.post('/', async (req, res) => {
+  req.body.password = hash(req.body.password);
+  req.body.birthday = Date.parse(req.body.birthday) + (2 * 60 * 60 * 1000);
   const newUser = new User(req.body);
   await newUser.save();
+  delete newUser['_doc']["password"];
   res.send({ data: newUser });
 })
 
-router.post('/:id', async (req, res) => {
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username: username });
+
+  const loggedIn = hash(password) == user.password;
+  res.send({ data: { loggedIn: loggedIn, userType: loggedIn ? user.userType : 'CLIENT' } });
+})
+
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const user = await User.findByIdAndUpdate(id, req.body, { new: true });
   await user.save();
+  delete user['_doc']["password"];
   res.send({ data: user });
 })
 
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const user = await User.findByIdAndDelete(id);
-  const bookmark = await Bookmark.deleteMany({ userId: user._id });
+  await Bookmark.deleteMany({ userId: user._id });
+  delete user['_doc']["password"];
   res.send({ data: user });
 })
-
-router.post('/login', async (req, res) => {
-  const { username, password } = req.params;
-  const user = await User.findOne({ username: username });
-  res.send({ data: { loggedIn: password == user.password, userType: user.userType } });
-})
-
 
 module.exports = router;
