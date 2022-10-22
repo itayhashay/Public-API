@@ -84,6 +84,7 @@ $(document).ready(function () {
     })
 });
 
+
 const body = document.querySelector("body"),
     modeToggle = body.querySelector(".mode-toggle");
 sidebar = body.querySelector("nav");

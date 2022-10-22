@@ -82,9 +82,9 @@ let categories = [
         categoryDesc: "This category is for all the book lovers out there."
     },
     {
-    categoryId: "art-design", // specify the category id you chose
-    categoryName: "Art & Design",
-    categoryDesc: "This category is for all the art & design lovers out there."
+        categoryId: "art-design", // specify the category id you chose
+        categoryName: "Art & Design",
+        categoryDesc: "This category is for all the art & design lovers out there."
     },
 ]
 
