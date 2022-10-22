@@ -1,5 +1,6 @@
 const express = require('express'),
-    expressLayouts = require('express-ejs-layouts');
+    expressLayouts = require('express-ejs-layouts'),
+    router = express.Router();
 
 let cards_mocks = [
     {
@@ -69,26 +70,24 @@ let analytics = {
     total_users: "3400" ,
     total_upvotes: "2500"
 }
+router.use(expressLayouts)
+router.get('/', (req, res) => {
+    res.render('Cards',
+    { 
+        cards: cards_mocks,
+        layout: 'Layouts/navbar.ejs'
+    }
+    )
+})
+
+router.get('/admin', (req, res) => {
+    res.render('dashboard',
+    { 
+        analytics: analytics,
+        layout: 'Layouts/dashboard.ejs'
+    }
+    )
+})
 
 
-module.exports = function(app) {
-    app.use(expressLayouts)
-    app.get('/', function(req, res){
-        res.render('Cards',
-        { 
-            cards: cards_mocks,
-            layout: 'Layouts/navbar.ejs'
-        }
-        )
-    })
-
-    app.get('/admin', function(req, res){
-        res.render('dashboard',
-        { 
-            analytics: analytics,
-            layout: 'Layouts/dashboard.ejs'
-        }
-        )
-    })
-
-};
+module.exports = router;

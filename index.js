@@ -31,12 +31,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/apidb', { useNewUrlParser: true })
         console.log("no connection start");
     })
 
-// routes    
+    // routes    
+app.use('/', cards);
 app.use('/category', categoryRoute);
 app.use('/user', userRoute);
 app.use('/api', apiRoute);
 app.use('/bookmark', bookmarkRoute);
-cards(app)
 
 app.listen(port, () => {
     console.log(`listening on port ${port}!`);
