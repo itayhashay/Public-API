@@ -1,3 +1,5 @@
+const User = require('../Models/user');
+
 const express = require('express'),
     expressLayouts = require('express-ejs-layouts'),
     router = express.Router();
@@ -214,6 +216,7 @@ router.get('/dashboard',  (req, res) => {
     )
 })
 
+
 router.get('/manage-apis',  (req, res) => {
     res.render('manage-apis',
         {
@@ -232,6 +235,7 @@ router.get('/manage-users',  (req, res) => {
     )
 })
 
+
 router.get('/manage-categories',  (req, res) => {
     res.render('manage-categories',
         {
@@ -243,12 +247,55 @@ router.get('/manage-categories',  (req, res) => {
 
 /* Isar - This is an example for you..*/
 router.get('/latest-apis', (req, res) => {
-    res.render('latest-apis', // the name of the ejs file from the views folder
+    res.render('cards',
         {
-            users: cards_mocks,
-            layout: 'Layouts/main-div.ejs' // you need to use this one
+            cards: cards_mocks,
+            layout: 'Layouts/main-div.ejs'
         }
     )
 })
+router.get('/best-rated-apis', (req, res) => {
+    res.render('cards',
+        {
+            cards: cards_mocks,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+router.get('/random-apis', (req, res) => {
+    res.render('cards',
+        {
+            cards: cards_mocks,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+router.get('/bookmarks', (req, res) => {
+    res.render('cards',
+        {
+            cards: cards_mocks,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+
+router.get('/add-api',  (req, res) => {
+    res.render('add-api',
+        {
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+
+router.get('/profile',  (req, res) => {
+    res.render('add-api',
+        {
+            // profile: profile,
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+
+
 
 module.exports = router;
