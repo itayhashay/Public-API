@@ -70,6 +70,24 @@ let analytics = {
     total_upvotes: "2500"
 }
 
+let categories = [
+    {
+        categoryId: "animals", // specify the category id you chose
+        categoryName: "Animals",
+        categoryDesc: "This category is for all the animal lovers out there."
+    },
+    {
+        categoryId: "books", // specify the category id you chose
+        categoryName: "Books",
+        categoryDesc: "This category is for all the book lovers out there."
+    },
+    {
+    categoryId: "art-design", // specify the category id you chose
+    categoryName: "Art & Design",
+    categoryDesc: "This category is for all the art & design lovers out there."
+    },
+]
+
 let apis_mocks = [
     {
         id: "5",
@@ -176,7 +194,8 @@ module.exports = function (app) {
             }
         )
     })
-
+   
+    // admin path
     app.get('/admin', function (req, res) {
         res.render('dashboard',
             {
@@ -186,12 +205,20 @@ module.exports = function (app) {
         )
     })
 
-    // admin path
+    app.get('/dashboard', function (req, res) {
+        res.render('dashboard',
+            {
+                analytics: analytics,
+                layout: 'Layouts/main-div.ejs'
+            }
+        )
+    })
+
     app.get('/manage-apis', function (req, res) {
         res.render('manage-apis',
             {
                 apis: apis_mocks,
-                layout: 'Layouts/admin.ejs'
+                layout: 'Layouts/main-div.ejs'
             }
         )
     })
@@ -200,7 +227,26 @@ module.exports = function (app) {
         res.render('manage-users',
             {
                 users: users_mocks,
-                layout: 'Layouts/admin.ejs'
+                layout: 'Layouts/main-div.ejs'
+            }
+        )
+    })
+
+    app.get('/manage-categories', function (req, res) {
+        res.render('manage-categories',
+            {
+                categories: categories,
+                layout: 'Layouts/main-div.ejs'
+            }
+        )
+    })
+
+    /* Isar - This is an example for you..*/
+    app.get('/latest-apis', function (req, res) {
+        res.render('latest-apis', // the name of the ejs file from the views folder
+            {
+                users: cards_mocks,
+                layout: 'Layouts/main-div.ejs' // you need to use this one
             }
         )
     })

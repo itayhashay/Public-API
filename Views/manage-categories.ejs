@@ -1,0 +1,38 @@
+<div id="main" class="manage-users-page">
+    <div class="activity">
+        <div class="title">
+            <i class="uil uil-bars"></i>
+            <span class="text">All Categories</span>
+        </div>
+
+        <div class="activity-data">
+            <div class="data hive">
+                <span class="data-title">id</span>
+                <% categories.forEach(cat => { %>
+                    <span class="data-list"><%= cat.categoryId %></span>
+                    <% });%>
+            </div>
+            <div class="data names">
+                <span class="data-title">Name</span>
+                <% categories.forEach(cat => { %>
+                <span class="data-list"><%= cat.categoryName %></span>
+                <% });%>
+            </div>
+            <div class="data email">
+                <span class="data-title">Description</span>
+                <% categories.forEach(cat => { %>
+                <span class="data-list"><%= cat.categoryDesc %></span>
+                <% });%>
+            </div>
+            <div class="data email">
+                <span class="data-title">Delete</span>
+                <% categories.forEach(cat => { %>
+                    <!-- here you need to specify the delete functionality -->
+                <a href="/delete-category?categoryId=<%= cat.categoryId %>">
+                    <i class="uil uil-times-square"></i>
+                </a>
+                <% });%>
+            </div>
+        </div>
+    </div>
+</div>

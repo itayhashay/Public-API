@@ -1,54 +1,52 @@
-<div id="main" class="manage-apis-page">
-    <div class="activity">
-        <div class="title">
-            <i class="uil uil-arrow"></i>
-            <span class="text">All APIs</span>
+<div class="activity">
+    <div class="title">
+        <i class="uil uil-arrow"></i>
+        <span class="text">All APIs</span>
+    </div>
+
+    <div class="activity-data">
+        <div class="data hive">
+            <span class="data-title">id</span>
+            <% apis.forEach(api => { %>
+                <span class="data-list"><%= api.id %></span>
+                <% });%>
+        </div>
+        <div class="data names">
+            <span class="data-title">API Name</span>
+            <% apis.forEach(api => { %>
+            <span class="data-list"><%= api.name %></span>
+            <% });%>
+        </div>
+        <div class="data email">
+            <span class="data-title">Description</span>
+            <% apis.forEach(api => { %>
+                <span class="data-list"><%= api.description %></span>
+                <% });%>
+        </div>
+        <div class="data joined">
+            <span class="data-title">Url</span>
+            <% apis.forEach(api => { %>
+                <span class="data-list"><%= api.url %></span>
+                <% });%>
+        </div>
+        <div class="data type">
+            <span class="data-title">Category Id</span>
+            <% apis.forEach(api => { %>
+                <span class="data-list"><%= api.categoryId %></span>
+                <% });%>
+        </div>
+        <div class="data status">
+            <span class="data-title">Upload By</span>
+            <% apis.forEach(api => { %>
+                <span class="data-list"><%= api.upload_by %></span>
+                <% });%>
         </div>
 
-        <div class="activity-data">
-            <div class="data hive">
-                <span class="data-title">id</span>
-                <% apis.forEach(api => { %>
-                    <span class="data-list"><%= api.id %></span>
-                    <% });%>
-            </div>
-            <div class="data names">
-                <span class="data-title">API Name</span>
-                <% apis.forEach(api => { %>
-                <span class="data-list"><%= api.name %></span>
+        <div class="data time">
+            <span class="data-title">Upvotes</span>
+            <% apis.forEach(api => { %>
+                <span class="data-list"><%= api.upvotes %></span>
                 <% });%>
-            </div>
-            <div class="data email">
-                <span class="data-title">Description</span>
-                <% apis.forEach(api => { %>
-                    <span class="data-list"><%= api.description %></span>
-                    <% });%>
-            </div>
-            <div class="data joined">
-                <span class="data-title">Url</span>
-                <% apis.forEach(api => { %>
-                    <span class="data-list"><%= api.url %></span>
-                    <% });%>
-            </div>
-            <div class="data type">
-                <span class="data-title">Category Id</span>
-                <% apis.forEach(api => { %>
-                    <span class="data-list"><%= api.categoryId %></span>
-                    <% });%>
-            </div>
-            <div class="data status">
-                <span class="data-title">Upload By</span>
-                <% apis.forEach(api => { %>
-                    <span class="data-list"><%= api.upload_by %></span>
-                    <% });%>
-            </div>
-
-            <div class="data time">
-                <span class="data-title">Upvotes</span>
-                <% apis.forEach(api => { %>
-                    <span class="data-list"><%= api.upvotes %></span>
-                    <% });%>
-            </div>
         </div>
     </div>
 </div>
