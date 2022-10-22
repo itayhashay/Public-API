@@ -10,7 +10,7 @@ const categoryRoute = require('./Controllers/category'),
     userRoute = require('./Controllers/user'),
     apiRoute = require('./Controllers/api'),
     bookmarkRoute = require('./Controllers/bookmark'),
-    cards           = require('./Controllers/cards')
+    pages           = require('./Controllers/pages')
 
 //Static content
 app.use(express.static('public'))
@@ -32,7 +32,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/apidb', { useNewUrlParser: true })
     })
 
     // routes    
-app.use('/', cards);
+app.use('/', pages);
 app.use('/category', categoryRoute);
 app.use('/user', userRoute);
 app.use('/api', apiRoute);

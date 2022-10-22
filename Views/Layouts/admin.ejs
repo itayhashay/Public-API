@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css\navbar.css">
     <link rel="stylesheet" href="css\card.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -28,40 +32,45 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dahsboard</span>
+                <li><a class="active" href="#">
+                    <i class="uil uil-estate active-icon"></i>
+                    <span class="active-text">Dashboard</span>
                 </a></li>
                 <li><a href="#">
-                    <i class="uil uil-arrow"></i>
+                    <i class="uil uil-arrow non-active-icon"></i>
                     <span class="link-name">Manage APIs</span>
                 </a></li>
                 <li><a href="#">
-                    <i class="uil uil-users-alt"></i>
+                    <i class="uil uil-users-alt non-active-icon"></i>
                     <span class="link-name">Manage Users</span>
                 </a></li>    
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-bars non-active-icon"></i>
+                    <span class="link-name">Manage Categories</span>
+                </a></li>   
             </ul>
 
             <ul class="logout-mode">
                 
                 <li><a href="#">
-                    <i class="uil uil-clock"></i>
+                    <i class="uil uil-clock non-active-icon"></i>
                     <span class="link-name">Latest APIs</span>
                 </a></li>
                 <li><a href="#">
-                    <i class="uil uil-thumbs-up"></i>
+                    <i class="uil uil-thumbs-up non-active-icon"></i>
                     <span class="link-name">Best Rated APIs</span>
                 </a></li>
                 <li><a href="#">
-                    <i class="uil uil-arrow-random"></i>
+                    <i class="uil uil-arrow-random non-active-icon"></i>
                     <span class="link-name">Random APIs</span>
                 </a></li>
                 <li><a href="#">
-                    <i class="uil-favorite"></i>
+                    <i class="uil-favorite non-active-icon"></i>
                     <span class="link-name">Bookmarks</span>
                 </a></li>
                 <li><a href="#">
-                    <i class="uil uil-plus"></i>
+                    <i class="uil uil-plus non-active-icon"></i>
                     <span class="link-name">Add API</span>
                 </a></li>
     
@@ -70,18 +79,18 @@
             <ul class="logout-mode">
                 
                 <li><a href="#">
-                    <i class="uil-user"></i>
+                    <i class="uil-user non-active-icon"></i>
                     <span class="link-name">Profile</span>
                 </a></li>
                 
                 <li><a href="#">
-                    <i class="uil uil-signout"></i>
+                    <i class="uil uil-signout non-active-icon"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
 
                 <li class="mode">
                     <a href="#">
-                        <i class="uil uil-moon"></i>
+                        <i class="uil uil-moon non-active-icon"></i>
                     <span class="link-name">Dark Mode</span>
                 </a>
 
@@ -101,12 +110,26 @@
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
+
+            <!-- this is the checkbox parameters for the search -->
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="Checkbox1" value="Name" checked>
+                <label class="form-check-label" for="inlineCheckbox1">Name</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="Checkbox2" value="Category" checked>
+                <label class="form-check-label" for="inlineCheckbox2">Category</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="Checkbox3" value="Upload By" checked>
+                <label class="form-check-label" for="inlineCheckbox2">Upload By</label>
+            </div>
             
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
 
 
-        <div class="dash-content">    
+        <div id="main" class="dash-content">    
             <%- body %>
 
         </div>    
