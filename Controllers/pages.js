@@ -201,6 +201,24 @@ router.get('/', async (req, res) => {
     )
 })
 
+router.get('/test', async (req, res) => {
+    res.render('submit-new-api',
+        {
+            options: ["test1","test2","test3"],
+            layout: 'Layouts/navbar.ejs'
+        }
+    )
+})
+
+router.get('/add-api', async (req, res) => {
+    res.render('submit-new-api',
+        {
+            options: ["test1","test2","test3"],
+            layout: 'Layouts/main-div.ejs'
+        }
+    )
+})
+
 // admin path
 router.get('/admin', async (req, res) => {
     const apis_count = await Api.countDocuments();
