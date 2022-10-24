@@ -274,18 +274,21 @@ router.get('/manage-categories', async (req, res) => {
 })
 
 /* Isar - This is an example for you..*/
-router.get('/latest-apis', (req, res) => {
+router.get('/latest-apis', async (req, res) => {
+    const apis = await Api.find({}).sort({ date: 1 });
+    console.log(apis);
     res.render('cards',
         {
-            cards: cards_mocks,
+            cards: apis,
             layout: 'Layouts/main-div.ejs'
         }
     )
 })
-router.get('/best-rated-apis', (req, res) => {
+router.get('/best-rated-apis', async (req, res) => {
+    const apis = await Api.find({}).sort({ upvotes: 'descending' }).limit(5);
     res.render('cards',
         {
-            cards: cards_mocks,
+            cards: apis,
             layout: 'Layouts/main-div.ejs'
         }
     )
