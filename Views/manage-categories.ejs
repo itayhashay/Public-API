@@ -23,28 +23,34 @@
                         <!-- id ? -->
                     </th>
                     <th>Name</th>
-                    <th>ID</th>
+                    <!-- <th>ID</th> -->
                     <th>Description</th>
+                    <th>APIs</th>
                     <!-- <th>Phone</th> -->
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <% categories.forEach(cat => { %>
+                <% categories.forEach(cat=> { %>
                     <tr>
                         <td class="text-center">
                             <!-- count ? -->
                         </td>
                         <td>
-                                <span class="data-list"><%= cat.categoryName %></span>
+                            <span class="data-list">
+                                <%= cat.name %>
+                            </span>
                         </td>
                         <td>
-                                <span class="data-list"><%= cat.categoryId %></span>
+                            <span class="data-list">
+                                <%= cat.description %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= cat.categoryDesc %></span>
+                            <span class="data-list">
+                                <%= cat.description %>
+                            </span>
                         </td>
-                        <!-- <td>(171) 555-2222</td> -->
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                 <i class="uil uil-edit" data-toggle="tooltip" title="Edit"></i>
@@ -54,7 +60,7 @@
                             </a>
                         </td>
                     </tr>
-                <% });%>
+                    <% });%>
             </tbody>
         </table>
 

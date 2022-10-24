@@ -5,6 +5,10 @@ const categorySchema = new mongoose.Schema({
         type: String,
         require: true,
         trim: true
+    },
+    description: {
+        type: String,
+        default: "-no description-"
     }
 })
 

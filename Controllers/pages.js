@@ -1,8 +1,8 @@
 const User = require('../Models/user'),
-    Bookmarks = require('../Models/bookmark'),
+    Bookmark = require('../Models/bookmark'),
     Api = require('../Models/api'),
-    Category = require('../Models/category');
-const express = require('express'),
+    Category = require('../Models/category'),
+    express = require('express'),
     expressLayouts = require('express-ejs-layouts'),
     router = express.Router();
 
@@ -69,11 +69,11 @@ let cards_mocks = [
     },
 ]
 
-let analytics = {
-    total_apis: "340",
-    total_users: "3400",
-    total_upvotes: "2500"
-}
+// let analytics = {
+//     total_apis: "340",
+//     total_users: "3400",
+//     total_upvotes: "2500"
+// }
 
 let categories = [
     {
@@ -189,7 +189,8 @@ let users_mocks = [
     },
 ]
 
-router.use(expressLayouts)
+router.use(expressLayouts);
+
 router.get('/', async (req, res) => {
     const apis = await Api.find({});
     res.render('Cards',
@@ -201,7 +202,17 @@ router.get('/', async (req, res) => {
 })
 
 // admin path
-router.get('/admin', (req, res) => {
+router.get('/admin', async (req, res) => {
+    const apis_count = await Api.countDocuments();
+    const users_count = await User.countDocuments();
+    const sum_upvotes = await Api.aggregate([
+        { $group: { _id: null, sum: { $sum: "$upvotes" } } }
+    ]);
+    let analytics = {
+        total_apis: apis_count,
+        total_users: users_count,
+        total_upvotes: sum_upvotes[0].sum
+    }
     res.render('dashboard',
         {
             analytics: analytics,
@@ -210,7 +221,17 @@ router.get('/admin', (req, res) => {
     )
 })
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', async (req, res) => {
+    const apis_count = await Api.countDocuments();
+    const users_count = await User.countDocuments();
+    const sum_upvotes = await Api.aggregate([
+        { $group: { _id: null, sum: { $sum: "$upvotes" } } }
+    ]);
+    let analytics = {
+        total_apis: apis_count,
+        total_users: users_count,
+        total_upvotes: sum_upvotes[0].sum
+    }
     res.render('dashboard',
         {
             analytics: analytics,
@@ -219,30 +240,34 @@ router.get('/dashboard', (req, res) => {
     )
 })
 
-
-router.get('/manage-apis', (req, res) => {
+router.get('/manage-apis', async (req, res) => {
+    const apis = await Api.find({});
     res.render('manage-apis',
         {
-            apis: apis_mocks,
+            apis: apis,
             layout: 'Layouts/main-div.ejs'
         }
     )
 })
+
 // admin path
-router.get('/manage-users', (req, res) => {
+router.get('/manage-users', async (req, res) => {
+    const users = await User.find({});
     res.render('manage-users',
         {
-            users: users_mocks,
+            users: users,
             layout: 'Layouts/main-div.ejs'
         }
     )
 })
 
 
-router.get('/manage-categories', (req, res) => {
+router.get('/manage-categories', async (req, res) => {
+    //TODO: Add Count of Categories
+    const category = await Category.find({});
     res.render('manage-categories',
         {
-            categories: categories,
+            categories: category,
             layout: 'Layouts/main-div.ejs'
         }
     )
@@ -265,18 +290,28 @@ router.get('/best-rated-apis', (req, res) => {
         }
     )
 })
-router.get('/random-apis', (req, res) => {
+router.get('/random-apis', async (req, res) => {
+    const apis = await Api.find({});
+    const api = [];
+    api[0] = apis[Math.floor(Math.random() * apis.length - 1)];
     res.render('cards',
         {
-            cards: cards_mocks,
+            cards: api,
             layout: 'Layouts/main-div.ejs'
         }
     )
 })
-router.get('/bookmarks', (req, res) => {
+router.get('/bookmarks', async (req, res) => {
+    //TODO: Add Bookmarks by user (dynamic)
+    const userId = "6353085cb249c7ed72bfdb35";
+    const bookmarks = await Bookmark.find({ userId: userId });
+    let data = [];
+    for (let i = 0; i < bookmarks.length; i++) {
+        data[i] = await bookmarkParser(bookmarks[i]).api;
+    }
     res.render('cards',
         {
-            cards: cards_mocks,
+            cards: bookmarks,
             layout: 'Layouts/main-div.ejs'
         }
     )
@@ -299,6 +334,18 @@ router.get('/profile', (req, res) => {
     )
 })
 
+
+const bookmarkParser = async (bookmark) => {
+    let user, api;
+    user = await User.findById(bookmark.userId)
+    delete user['_doc']["password"];
+    api = await Api.findById(bookmark.apiId)
+    return {
+        "id": bookmark.id,
+        "user": user,
+        "api": api
+    }
+}
 
 
 module.exports = router;
