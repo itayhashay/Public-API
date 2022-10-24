@@ -1,5 +1,7 @@
-const User = require('../Models/user');
-
+const User = require('../Models/user'),
+    Bookmarks = require('../Models/bookmark'),
+    Api = require('../Models/api'),
+    Category = require('../Models/category');
 const express = require('express'),
     expressLayouts = require('express-ejs-layouts'),
     router = express.Router();
@@ -143,62 +145,63 @@ let users_mocks = [
     {
         // firstName and the first letter of the lastName
         username: "EitanA",
-        firstName:"Eitan",
-        lastName:"Azaria",
-        birthday:"1989-01-01",
-        email:"EitanA@gmail.com",
-        userType:"client"
+        firstName: "Eitan",
+        lastName: "Azaria",
+        birthday: "1989-01-01",
+        email: "EitanA@gmail.com",
+        userType: "client"
     },
     {
         // firstName and the first letter of the lastName
         username: "MikeD",
-        firstName:"Mike",
-        lastName:"Danilo",
-        birthday:"1979-01-01",
-        email:"MikeD@gmail.com",
-        userType:"Admin"
+        firstName: "Mike",
+        lastName: "Danilo",
+        birthday: "1979-01-01",
+        email: "MikeD@gmail.com",
+        userType: "Admin"
     },
     {
         // firstName and the first letter of the lastName
         username: "JohnB",
-        firstName:"John",
-        lastName:"Bloomberg",
-        birthday:"1959-01-01",
-        email:"JohnB@gmail.com",
-        userType:"client"
+        firstName: "John",
+        lastName: "Bloomberg",
+        birthday: "1959-01-01",
+        email: "JohnB@gmail.com",
+        userType: "client"
     },
     {
         // firstName and the first letter of the lastName
         username: "MosheD",
-        firstName:"Moshe",
-        lastName:"Davidov",
-        birthday:"1994-01-01",
-        email:"MosheD@gmail.com",
-        userType:"client"
+        firstName: "Moshe",
+        lastName: "Davidov",
+        birthday: "1994-01-01",
+        email: "MosheD@gmail.com",
+        userType: "client"
     },
     {
         // firstName and the first letter of the lastName
         username: "EliC",
-        firstName:"Eli",
-        lastName:"Copter",
-        birthday:"1996-01-01",
-        email:"EliC@gmail.com",
-        userType:"client"
+        firstName: "Eli",
+        lastName: "Copter",
+        birthday: "1996-01-01",
+        email: "EliC@gmail.com",
+        userType: "client"
     },
 ]
 
 router.use(expressLayouts)
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const apis = await Api.find({});
     res.render('Cards',
         {
-            cards: cards_mocks,
+            cards: apis,
             layout: 'Layouts/navbar.ejs'
         }
     )
 })
 
 // admin path
-router.get('/admin',  (req, res) => {
+router.get('/admin', (req, res) => {
     res.render('dashboard',
         {
             analytics: analytics,
@@ -207,7 +210,7 @@ router.get('/admin',  (req, res) => {
     )
 })
 
-router.get('/dashboard',  (req, res) => {
+router.get('/dashboard', (req, res) => {
     res.render('dashboard',
         {
             analytics: analytics,
@@ -217,7 +220,7 @@ router.get('/dashboard',  (req, res) => {
 })
 
 
-router.get('/manage-apis',  (req, res) => {
+router.get('/manage-apis', (req, res) => {
     res.render('manage-apis',
         {
             apis: apis_mocks,
@@ -226,7 +229,7 @@ router.get('/manage-apis',  (req, res) => {
     )
 })
 // admin path
-router.get('/manage-users',  (req, res) => {
+router.get('/manage-users', (req, res) => {
     res.render('manage-users',
         {
             users: users_mocks,
@@ -236,7 +239,7 @@ router.get('/manage-users',  (req, res) => {
 })
 
 
-router.get('/manage-categories',  (req, res) => {
+router.get('/manage-categories', (req, res) => {
     res.render('manage-categories',
         {
             categories: categories,
@@ -279,7 +282,7 @@ router.get('/bookmarks', (req, res) => {
     )
 })
 
-router.get('/add-api',  (req, res) => {
+router.get('/add-api', (req, res) => {
     res.render('add-api',
         {
             layout: 'Layouts/main-div.ejs'
@@ -287,7 +290,7 @@ router.get('/add-api',  (req, res) => {
     )
 })
 
-router.get('/profile',  (req, res) => {
+router.get('/profile', (req, res) => {
     res.render('add-api',
         {
             // profile: profile,

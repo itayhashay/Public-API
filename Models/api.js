@@ -11,7 +11,7 @@ const apiSchema = new mongoose.Schema({
         require: true,
         trim: true
     },
-    upvote: {
+    upvotes: {
         type: Number,
         default: 0,
         require: true
