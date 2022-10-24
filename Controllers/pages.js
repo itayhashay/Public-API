@@ -192,10 +192,10 @@ let users_mocks = [
 router.use(expressLayouts);
 
 router.get('/', async (req, res) => {
-    const apis = await Api.find({});
+    // const apis = await Api.find({});
     res.render('Cards',
         {
-            cards: apis,
+            cards: cards_mocks,
             layout: 'Layouts/navbar.ejs'
         }
     )
