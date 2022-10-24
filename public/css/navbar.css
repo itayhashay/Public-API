@@ -200,8 +200,12 @@ nav.close li a .link-name{
 
 
 body.dark .nav-links li a:hover i,
-body.dark .nav-links li a:hover .link-name{
+body.dark .nav-links li a:hover .link-name
+,body.dark .form-check-label{
     color: #FFF;
+}
+body.dark #main .table-title{
+    color: rgb(0, 0, 0);
 }
 .menu-items .logout-mode{
     padding-top: 10px;
@@ -738,3 +742,9 @@ table.table .avatar {
 .modal form label {
     font-weight: normal;
 }	
+
+svg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}

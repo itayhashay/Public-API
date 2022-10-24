@@ -81,6 +81,62 @@ $(document).ready(function () {
                 }  
             })
         }
+        if (page == "Best Rated APIs") {  //here you need to specify the *exact* page name from the sidebar
+            $.ajax( {
+              url: '/best-rated-apis', // here you put the url path that will retrive the page
+              type: 'GET',
+              contenttype: 'html',
+                success: function(data) {
+                    console.log(data);
+                    $("#main").html(data);
+                }  
+            })
+        }
+        if (page == "Random APIs") {  //here you need to specify the *exact* page name from the sidebar
+            $.ajax( {
+              url: '/random-apis', // here you put the url path that will retrive the page
+              type: 'GET',
+              contenttype: 'html',
+                success: function(data) {
+                    console.log(data);
+                    $("#main").html(data);
+                }  
+            })
+        }
+        if (page == "Bookmarks") {  //here you need to specify the *exact* page name from the sidebar
+            $.ajax( {
+              url: '/bookmarks', // here you put the url path that will retrive the page
+              type: 'GET',
+              contenttype: 'html',
+                success: function(data) {
+                    console.log(data);
+                    $("#main").html(data);
+                }  
+            })
+        }
+
+        if (page == "Add API") {  //here you need to specify the *exact* page name from the sidebar
+            $.ajax( {
+              url: '/add-api', // here you put the url path that will retrive the page
+              type: 'GET',
+              contenttype: 'html',
+                success: function(data) {
+                    console.log(data);
+                    $("#main").html(data);
+                }  
+            })
+        }
+        if (page == "Profile") {  //here you need to specify the *exact* page name from the sidebar
+            $.ajax( {
+              url: '/profile', // here you put the url path that will retrive the page
+              type: 'GET',
+              contenttype: 'html',
+                success: function(data) {
+                    console.log(data);
+                    $("#main").html(data);
+                }  
+            })
+        }
     })
 });
 
