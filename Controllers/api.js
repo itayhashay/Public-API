@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 router.post('/upvote/:id', async (req, res) => {
   const { id } = req.params;
   let api = await Api.findById(id);
-  api.upvote++;
+  api.upvotes++;
   api = await Api.findByIdAndUpdate(id, api, { new: true });
   api.save();
   res.send({ data: api })

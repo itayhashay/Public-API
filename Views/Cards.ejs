@@ -29,9 +29,11 @@
                         <%= card.description %>
                     </p>
                     <div class="card-bottom">
-                        <button class="btn hover-green" data-bs-toggle="tooltip" data-bs-placement="top" title="Upvote">
+                        <button class="btn hover-green upvote" data-id=<%=card.id %> data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Upvote">
                             <i class="bi bi-arrow-up-square">
-                                <b class="ps-2">
+                                <b class="ps-2" id=<%=card.id %>>
                                     <%= card.upvotes %>
                                 </b>
                             </i>

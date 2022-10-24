@@ -75,71 +75,71 @@ let cards_mocks = [
 //     total_upvotes: "2500"
 // }
 
-let categories = [
-    {
-        categoryId: "animals", // specify the category id you chose
-        categoryName: "Animals",
-        categoryDesc: "This category is for all the animal lovers out there."
-    },
-    {
-        categoryId: "books", // specify the category id you chose
-        categoryName: "Books",
-        categoryDesc: "This category is for all the book lovers out there."
-    },
-    {
-        categoryId: "art-design", // specify the category id you chose
-        categoryName: "Art & Design",
-        categoryDesc: "This category is for all the art & design lovers out there."
-    },
-]
+// let categories = [
+//     {
+//         categoryId: "animals", // specify the category id you chose
+//         categoryName: "Animals",
+//         categoryDesc: "This category is for all the animal lovers out there."
+//     },
+//     {
+//         categoryId: "books", // specify the category id you chose
+//         categoryName: "Books",
+//         categoryDesc: "This category is for all the book lovers out there."
+//     },
+//     {
+//         categoryId: "art-design", // specify the category id you chose
+//         categoryName: "Art & Design",
+//         categoryDesc: "This category is for all the art & design lovers out there."
+//     },
+// ]
 
-let apis_mocks = [
-    {
-        id: "5",
-        name: "Random Dog Image",
-        description: "load random cat image",
-        url: "https://google.com",
-        categoryId: "animals",
-        upvotes: 450,
-        upload_by: "user2"
-    },
-    {
-        id: "4",
-        name: "Random Tiger Image",
-        description: "load random Tiger image",
-        url: "https://google.com",
-        categoryId: "animals",
-        upvotes: 145,
-        upload_by: "user3"
-    },
-    {
-        id: "3",
-        name: "British National Bibliography",
-        description: "Free books API",
-        url: "https://google.com",
-        categoryId: "Books",
-        upvotes: 245,
-        upload_by: "user4"
-    },
-    {
-        id: "2",
-        name: "Bible-api",
-        description: "Free Bible API with multiple languages",
-        url: "https://google.com",
-        categoryId: "Books",
-        upvotes: 445,
-        upload_by: "user5"
-    },
-    {
-        id: "1",
-        name: "URLhaus",
-        description: "Bulk queries and Download Malware Samples	",
-        url: "https://google.com",
-        categoryId: "Art & Design",
-        upvotes: 645,
-        upload_by: "user6"
-    },
-]
+// let apis_mocks = [
+//     {
+//         id: "5",
+//         name: "Random Dog Image",
+//         description: "load random cat image",
+//         url: "https://google.com",
+//         categoryId: "animals",
+//         upvotes: 450,
+//         upload_by: "user2"
+//     },
+//     {
+//         id: "4",
+//         name: "Random Tiger Image",
+//         description: "load random Tiger image",
+//         url: "https://google.com",
+//         categoryId: "animals",
+//         upvotes: 145,
+//         upload_by: "user3"
+//     },
+//     {
+//         id: "3",
+//         name: "British National Bibliography",
+//         description: "Free books API",
+//         url: "https://google.com",
+//         categoryId: "Books",
+//         upvotes: 245,
+//         upload_by: "user4"
+//     },
+//     {
+//         id: "2",
+//         name: "Bible-api",
+//         description: "Free Bible API with multiple languages",
+//         url: "https://google.com",
+//         categoryId: "Books",
+//         upvotes: 445,
+//         upload_by: "user5"
+//     },
+//     {
+//         id: "1",
+//         name: "URLhaus",
+//         description: "Bulk queries and Download Malware Samples	",
+//         url: "https://google.com",
+//         categoryId: "Art & Design",
+//         upvotes: 645,
+//         upload_by: "user6"
+//     },
+// ]
 
 let users_mocks = [
     {
@@ -192,10 +192,10 @@ let users_mocks = [
 router.use(expressLayouts);
 
 router.get('/', async (req, res) => {
-    // const apis = await Api.find({});
+    const apis = await Api.find({});
     res.render('Cards',
         {
-            cards: cards_mocks,
+            cards: apis,
             layout: 'Layouts/navbar.ejs'
         }
     )
@@ -275,8 +275,7 @@ router.get('/manage-categories', async (req, res) => {
 
 /* Isar - This is an example for you..*/
 router.get('/latest-apis', async (req, res) => {
-    const apis = await Api.find({}).sort({ date: 1 });
-    console.log(apis);
+    const apis = await Api.find({}).sort([['date', -1]]);
     res.render('cards',
         {
             cards: apis,
