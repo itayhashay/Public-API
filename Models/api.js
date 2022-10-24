@@ -24,6 +24,14 @@ const apiSchema = new mongoose.Schema({
     category: {
         type: String,
         require: true
+    },
+    img: {
+        type: String,
+        default: "\\img\\GerbilCropped.png"
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 })
 

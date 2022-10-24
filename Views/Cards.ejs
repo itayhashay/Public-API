@@ -1,46 +1,53 @@
 <div class="container my-2">
     <div class="row row-cols-4 gy-4">
-        <% cards.forEach(card => { %>
-        <div class="card col p-2 me-4 hover-border card-custom">
-            <div id="top-card">
-                <a href= <%= card.url %>>
-                    <img href= <%= card.url %> src="img/Gerbil cropped.png" class="rounded-circle small-img-icon m-2 border border-dark">
-                </a>
+        <% cards.forEach(card=> { %>
+            <div class="card col p-2 me-4 hover-border card-custom">
+                <div id="top-card">
+                    <a href=<%=card.url %>>
+                        <img href=<%=card.url %> src="img/GerbilCropped.png" class="rounded-circle small-img-icon m-2
+                        border border-dark">
+                    </a>
 
-                <i class="bi bi-three-dots-vertical float-end mt-2 pt-2 ps-1 pe-2 btn btn-light border-round display-hover"
-                    data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings"></i>
+                    <i class="bi bi-three-dots-vertical float-end mt-2 pt-2 ps-1 pe-2 btn btn-light border-round display-hover"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings"></i>
 
-                <a href= <%= card.url %>>
-                    <button class="btn btn-dark float-end p-2 m-2 display-hover">
-                        <i class="bi bi-arrow-up-right-square pe-2"></i>
-                        Read now
-                    </button>
-                </a>
-            </div>
-            <div class="card-img-custom">
-            <img src=<%= card.img %> class="card-img-top card-img-custom">
-            </div>
-            <div class="card-body h-100">
-                <h5 class="card-title"><%= card.name %></h5>
-                <p class="card-text card-text-custom"><%= card.description %></p>
-                <div class="card-bottom">
-                <button class="btn hover-green upvote"  data-id=<%= card.id %> data-bs-toggle="tooltip" data-bs-placement="top" title="Upvote">
-                    <i class="bi bi-arrow-up-square">
-                        <b class="ps-2"><%= card.upvotes %></b>
-                    </i>
-                </button>
-                <!-- <button class="btn hover-green" data-bs-toggle="tooltip" data-bs-placement="top" title="Comment">
+                    <a href=<%=card.url %>>
+                        <button class="btn btn-dark float-end p-2 m-2 display-hover">
+                            <i class="bi bi-arrow-up-right-square pe-2"></i>
+                            Read now
+                        </button>
+                    </a>
+                </div>
+                <div class="card-img-custom">
+                    <img src=<%=card.img %> class="card-img-top card-img-custom">
+                </div>
+                <div class="card-body h-100">
+                    <h5 class="card-title">
+                        <%= card.name %>
+                    </h5>
+                    <p class="card-text card-text-custom">
+                        <%= card.description %>
+                    </p>
+                    <div class="card-bottom">
+                        <button class="btn hover-green" data-bs-toggle="tooltip" data-bs-placement="top" title="Upvote">
+                            <i class="bi bi-arrow-up-square">
+                                <b class="ps-2">
+                                    <%= card.upvotes %>
+                                </b>
+                            </i>
+                        </button>
+                        <!-- <button class="btn hover-green" data-bs-toggle="tooltip" data-bs-placement="top" title="Comment">
                     <i class="bi bi-chat-square-text">
                         <b class="ps-2">2</b>
                     </i>
                 </button> -->
-                <button class="btn float-end hover-orange" data-bs-toggle="tooltip" data-bs-placement="top"
-                    title="Bookmark">
-                    <i class="bi bi-bookmark-heart"></i>
-                </button>
+                        <button class="btn float-end hover-orange" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Bookmark">
+                            <i class="bi bi-bookmark-heart"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
-        <% });%>
+            <% });%>
     </div>
 </div>
