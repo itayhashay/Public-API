@@ -198,6 +198,20 @@ router.get("/", async (req, res) => {
   });
 });
 
+router.get("/test", async (req, res) => {
+  res.render("submit-new-api", {
+    options: ["test1", "test2", "test3"],
+    layout: "Layouts/navbar.ejs",
+  });
+});
+
+router.get("/add-api", async (req, res) => {
+  res.render("submit-new-api", {
+    options: ["test1", "test2", "test3"],
+    layout: "Layouts/main-div.ejs",
+  });
+});
+
 // admin path
 router.get("/admin", (req, res) => {
   res.render("dashboard", {
@@ -274,13 +288,13 @@ router.get("/profile", (req, res) => {
 });
 router.get("/sign-up", (req, res) => {
   res.render("sign-up", {
-    // profile: sign-up,
+    // profile: profile,
     layout: "Layouts/StandAlonePage.ejs",
   });
 });
 router.get("/login", (req, res) => {
   res.render("login", {
-    // profile: log-in,
+    // profile: profile,
     layout: "Layouts/StandAlonePage.ejs",
   });
 });
