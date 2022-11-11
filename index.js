@@ -3,14 +3,15 @@ const express = require('express'),
     cookieParser = require('cookie-parser'),
     { default: mongoose } = require('mongoose'),
     app = express(),
-    port = 3000;
+    port = 3000,
+    connectionString = 'mongodb+srv://admin:Password1@cluster0.101ejri.mongodb.net/test';
 
 // Import the Controllers
 const categoryRoute = require('./Controllers/category'),
     userRoute = require('./Controllers/user'),
     apiRoute = require('./Controllers/api'),
     bookmarkRoute = require('./Controllers/bookmark'),
-    pages           = require('./Controllers/pages')
+    pages = require('./Controllers/pages')
 
 //Static content
 app.use(express.static('public'))
@@ -24,14 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // connect mongo
-mongoose.connect('mongodb://127.0.0.1:27017/apidb', { useNewUrlParser: true })
+mongoose.connect(connectionString, { useNewUrlParser: true })
     .then(() => {
         console.log("mongo connection open!!");
     }).catch(err => {
         console.log("no connection start");
     })
 
-    // routes    
+// routes    
 app.use('/', pages);
 app.use('/category', categoryRoute);
 app.use('/user', userRoute);
