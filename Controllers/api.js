@@ -39,6 +39,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // const category = await Category.findOne({ name: req.body.category })
   // req.body.category = category.name;
+  let img = req.body.category.replace(/\s/g, '');
+  req.body.img = `\\img\\${img}.png`;
+  //TODO: add dynamic user
+  req.body.uploadBy = "itayhashay";
   const newApi = new Api(req.body);
   await newApi.save();
   res.send({ data: newApi });

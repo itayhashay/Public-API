@@ -27,7 +27,7 @@ const apiSchema = new mongoose.Schema({
     },
     img: {
         type: String,
-        default: "\\img\\GerbilCropped.png"
+        default: "\\img\\default.png"
     },
     date: {
         type: Date,
