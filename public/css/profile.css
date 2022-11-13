@@ -1,0 +1,16 @@
+body {
+  background-color: lightslategrey;
+}
+#m-profile {
+  padding: 20px ;
+  font-family: Tahoma;
+  width: 90%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  background-color: whitesmoke;
+}

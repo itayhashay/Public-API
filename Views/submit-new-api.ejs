@@ -1,0 +1,35 @@
+<div id="section" class="h-100">
+    <section class="contact-wrap">
+        <form action="" class="contact-form">
+            <div class="col-sm-6">
+                <div class="input-block">
+                    <label for="">API Name</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-block">
+                    <label for="">API URL</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <span class="custom-dropdown big">
+                <select>
+                    <% options.forEach(option => { %>
+                        <option><%= option %></option>
+                    <% });%>
+                </select>
+            </span>
+            <div class="col-sm-12">
+                <div class="input-block">
+                    <label for="">Description</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button class="square-button">Send</button>
+            </div>
+        </form>
+    </section>
+
+</div>
