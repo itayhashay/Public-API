@@ -198,6 +198,15 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/render", async (req, res) => {
+    const apis = req;
+    console.log(req)
+    res.render("Cards", {
+        cards: apis,
+        layout: "Layouts/navbar.ejs",
+    });
+});
+
 router.get("/test", async (req, res) => {
     res.render("submit-new-api", {
         options: ["test1", "test2", "test3"],
@@ -206,8 +215,9 @@ router.get("/test", async (req, res) => {
 });
 
 router.get("/add-api", async (req, res) => {
+    const categories = await Category.find({});
     res.render("submit-new-api", {
-        options: ["test1", "test2", "test3"],
+        options: categories,
         layout: "Layouts/main-div.ejs",
     });
 });
