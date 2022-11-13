@@ -32,6 +32,10 @@ const apiSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now()
+    },
+    uploadedBy: {
+        type: String,
+        require: true
     }
 })
 
