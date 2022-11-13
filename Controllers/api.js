@@ -13,13 +13,16 @@ router.get('/search', async (req, res) => {
   let { name, uploadby, category, text } = req.query;
   let query = [];
   if (name == 'true') {
-    query.push({ name: { $regex: text, $options: 'i' } });
+    query = [...query, { name: { $regex: text, $options: 'i' } }]
+    // query.push({ name: { $regex: text, $options: 'i' } });
   }
   if (uploadby == 'true') {
-    query.push({ uplodedBy: { $regex: text, $options: 'i' } });
+    query = [...query, { uploadBy: { $regex: text, $options: 'i' } }]
+    // query.push({ uploadby: { $regex: text, $options: 'i' } });
   }
   if (category == 'true') {
-    query.push({ uploadby: { $regex: text, $options: 'i' } });
+    query = [...query, { category: { $regex: text, $options: 'i' } }]
+    // query.push({ category: { $regex: text, $options: 'i' } });
   }
   const api = await Api.find({
     $or: query
