@@ -1,72 +1,68 @@
+<link rel="stylesheet" href="css\sign-up.css" />
 
 
-  <div class="container">
-    <button id="open">Sign in</button>
-  </div>
 
-  <div class="model-container">
-    <div class="model">
-      <h3 class="card-title">Sign-in</h3>
-
-      
-       <div class="data"> 
-        
-        <div id="userName">
-          <label  > User name </label>
-          <input type="email"   placeholder="123john123">
-        </div>
-        <div id="Email">
-          <label  > Email </label>
-          <span id="Einput"></span>
-          <input type="email"   placeholder="johnjohnson@example.com">
-        </span>
-        </div>
-        <div id="password">
-          <label class="password"> Password</label>
-          <span id="Pinput">
-          <input type="password" placeholder="*********">
-        </span>
-        </div>
-        <div id="fname">
-          <label> First name</label>
-          <input type="text" placeholder="john">
-        </div>
-        <div id="lname">
-          <label> Last name</label>
-          <input type="text" placeholder="johnson">
-        </div>
-        
-        <div id="gender">
-          <label> Gender</label>
-          <span class="gender-select">
-            <select class="g-s-b" >
-              <option value="">Male</option>
-              <option value="">Female</option>
+    <div id="section" class="h-100">
+      <section class="contact-wrap">
+        <form action="" class="contact-form">
+          <h3 id="title">Sign up</h3>
+          <div class="col-sm-6">
+            <div class="input-block">
+              <label for="">First Name</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-block">
+              <label for="">Last Name</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-block">
+              <label for="">Username</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-block">
+              <label for="">Password</label>
+              <input type="password" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-block">
+              <label for="">Confirm password</label>
+              <input type="password" class="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="input-block" id="b-input">
+             <select class="form-select" aria-label="Default select example">
+               <option selected>Gender</option>
+               <option value="1">Male</option>
+               <option value="2">Female</option>
+               <option value="3">Other</option>
             </select>
-            <span class="arrow"></span>
-          </span>
+           </div>
+          </div>
+          <div class="col-sm-6">
+          <div class="input-block" id="b-input">
+          <input type="date" id="birthday">
         </div>
-        
-          <div id="b-date">
-            <label>Date</label>
-            <span id="d-input">
-            <input type="date">
-          </span>
+      </div>
+          <div class="col-sm-12">
+            <div class="input-block">
+              <label for="">Email</label>
+              <input type="email" class="form-control" />
+            </div>
           </div>
-      
-      </div>  
-        
-   
-         <button type="button" class="bot" href="#">Continue</button>
-          <div class="link">
-             <link class="form__text" id="createA">
-               <a class="form__link" href="/login" id="linklogAccount">Already have an account? Login here</a>
-             </link>
+          <div class="col-sm-12">
+            <button class="square-button">Send</button>
           </div>
-          <button type="button" id="close" class="close" href="#">x</button>
-          
+        </form>
+      </section>
     </div>
   </div>
   <script type="text/javascript" src="js/sign-up.js"></script>
-
-
+</div>

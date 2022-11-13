@@ -274,12 +274,6 @@ router.get("/bookmarks", (req, res) => {
   });
 });
 
-router.get("/add-api", (req, res) => {
-  res.render("add-api", {
-    layout: "Layouts/main-div.ejs",
-  });
-});
-
 router.get("/profile", (req, res) => {
   res.render("profile", {
     // profile: profile,
