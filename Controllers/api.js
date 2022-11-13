@@ -10,16 +10,16 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/search', async (req, res) => {
-  let { name, uplodedby, category, text } = req.query;
+  let { name, uploadby, category, text } = req.query;
   let query = [];
   if (name == 'true') {
-    query.push({ name: { $regex: q, $options: 'i' } });
+    query.push({ name: { $regex: text, $options: 'i' } });
   }
-  if (uplodedby == 'true') {
+  if (uploadby == 'true') {
     query.push({ uplodedBy: { $regex: text, $options: 'i' } });
   }
   if (category == 'true') {
-    query.push({ uplodedBy: { $regex: text, $options: 'i' } });
+    query.push({ uploadby: { $regex: text, $options: 'i' } });
   }
   const api = await Api.find({
     $or: query
