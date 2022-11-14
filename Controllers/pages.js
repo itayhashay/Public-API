@@ -204,7 +204,7 @@ router.get("/", async (req, res) => {
             query = [...query, { category: { $regex: text, $options: 'i' } }]
         }
     }
-    const apis = await Api.find({
+    let apis = query.length == 0 ? await Api.find({}) : await Api.find({
         $or: query
     });
     res.render("Cards", {
@@ -230,7 +230,8 @@ router.get("/test", async (req, res) => {
 });
 
 router.get("/add-api", async (req, res) => {
-    const categories = await Category.find({});
+    let categories = await Category.find({});
+    categories = categories.map(c => c.name)
     res.render("submit-new-api", {
         options: categories,
         layout: "Layouts/main-div.ejs",
@@ -263,6 +264,22 @@ router.get('/dashboard', async (req, res) => {
     const sum_upvotes = await Api.aggregate([
         { $group: { _id: null, sum: { $sum: "$upvotes" } } }
     ]);
+    const categories = await Api.aggregate([
+        {
+            $group: {
+                _id: '$category',
+                count: { $sum: 1 } // this means that the count will increment by 1
+            }
+        }
+    ]);
+    const users = await Api.aggregate([
+        {
+            $group: {
+                _id: '$uploadBy',
+                count: { $sum: 1 } // this means that the count will increment by 1
+            }
+        }
+    ]);
     let analytics = {
         total_apis: apis_count,
         total_users: users_count,
@@ -271,6 +288,7 @@ router.get('/dashboard', async (req, res) => {
     res.render('dashboard',
         {
             analytics: analytics,
+            users: users,
             layout: 'Layouts/main-div.ejs'
         }
     )
@@ -321,7 +339,7 @@ router.get('/latest-apis', async (req, res) => {
             query = [...query, { category: { $regex: text, $options: 'i' } }]
         }
     }
-    const apis = await Api.find({
+    let apis = query.length == 0 ? await Api.find({}).sort([['date', -1]]) : await Api.find({
         $or: query
     }).sort([['date', -1]]);
     res.render('cards',
