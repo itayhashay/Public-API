@@ -321,7 +321,7 @@ router.get('/latest-apis', async (req, res) => {
             query = [...query, { category: { $regex: text, $options: 'i' } }]
         }
     }
-    const apis = await Api.find({
+    let apis = query.length == 0 ? await Api.find({}).sort([['date', -1]]) : await Api.find({
         $or: query
     }).sort([['date', -1]]);
     res.render('cards',
