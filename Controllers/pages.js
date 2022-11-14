@@ -230,7 +230,8 @@ router.get("/test", async (req, res) => {
 });
 
 router.get("/add-api", async (req, res) => {
-    const categories = await Category.find({});
+    let categories = await Category.find({});
+    categories = categories.map(c => c.name)
     res.render("submit-new-api", {
         options: categories,
         layout: "Layouts/main-div.ejs",
@@ -271,6 +272,14 @@ router.get('/dashboard', async (req, res) => {
             }
         }
     ]);
+    const users = await Api.aggregate([
+        {
+            $group: {
+                _id: '$uploadBy',
+                count: { $sum: 1 } // this means that the count will increment by 1
+            }
+        }
+    ]);
     let analytics = {
         total_apis: apis_count,
         total_users: users_count,
@@ -279,7 +288,7 @@ router.get('/dashboard', async (req, res) => {
     res.render('dashboard',
         {
             analytics: analytics,
-            categories: categories,
+            users: users,
             layout: 'Layouts/main-div.ejs'
         }
     )
