@@ -263,6 +263,14 @@ router.get('/dashboard', async (req, res) => {
     const sum_upvotes = await Api.aggregate([
         { $group: { _id: null, sum: { $sum: "$upvotes" } } }
     ]);
+    const categories = await Api.aggregate([
+        {
+            $group: {
+                _id: '$category',
+                count: { $sum: 1 } // this means that the count will increment by 1
+            }
+        }
+    ]);
     let analytics = {
         total_apis: apis_count,
         total_users: users_count,
@@ -271,6 +279,7 @@ router.get('/dashboard', async (req, res) => {
     res.render('dashboard',
         {
             analytics: analytics,
+            categories: categories,
             layout: 'Layouts/main-div.ejs'
         }
     )
