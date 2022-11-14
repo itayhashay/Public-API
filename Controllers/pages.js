@@ -204,7 +204,7 @@ router.get("/", async (req, res) => {
             query = [...query, { category: { $regex: text, $options: 'i' } }]
         }
     }
-    const apis = await Api.find({
+    let apis = query.length == 0 ? await Api.find({}) : await Api.find({
         $or: query
     });
     res.render("Cards", {
