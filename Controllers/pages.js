@@ -191,7 +191,31 @@ let users_mocks = [
 
 router.use(expressLayouts);
 router.get("/", async (req, res) => {
-    const apis = await Api.find({});
+    let { name, uploadby, category, text } = req.query;
+    let query = [];
+    if (text !== undefined) {
+        if (name == 'true') {
+            query = [...query, { name: { $regex: text, $options: 'i' } }]
+        }
+        if (uploadby == 'true') {
+            query = [...query, { uploadBy: { $regex: text, $options: 'i' } }]
+        }
+        if (category == 'true') {
+            query = [...query, { category: { $regex: text, $options: 'i' } }]
+        }
+    }
+    const apis = await Api.find({
+        $or: query
+    });
+    res.render("Cards", {
+        cards: apis,
+        layout: "Layouts/navbar.ejs",
+    });
+});
+
+router.get("/render", async (req, res) => {
+    const apis = req;
+    console.log(req)
     res.render("Cards", {
         cards: apis,
         layout: "Layouts/navbar.ejs",
@@ -206,8 +230,9 @@ router.get("/test", async (req, res) => {
 });
 
 router.get("/add-api", async (req, res) => {
+    const categories = await Category.find({});
     res.render("submit-new-api", {
-        options: ["test1", "test2", "test3"],
+        options: categories,
         layout: "Layouts/main-div.ejs",
     });
 });
@@ -283,7 +308,22 @@ router.get('/manage-categories', async (req, res) => {
 })
 
 router.get('/latest-apis', async (req, res) => {
-    const apis = await Api.find({}).sort([['date', -1]]);
+    let { name, uploadby, category, text } = req.query;
+    let query = [];
+    if (text !== undefined) {
+        if (name == 'true') {
+            query = [...query, { name: { $regex: text, $options: 'i' } }]
+        }
+        if (uploadby == 'true') {
+            query = [...query, { uploadBy: { $regex: text, $options: 'i' } }]
+        }
+        if (category == 'true') {
+            query = [...query, { category: { $regex: text, $options: 'i' } }]
+        }
+    }
+    const apis = await Api.find({
+        $or: query
+    }).sort([['date', -1]]);
     res.render('cards',
         {
             cards: apis,

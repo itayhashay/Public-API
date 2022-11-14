@@ -1,21 +1,27 @@
 <link rel="stylesheet" href="css\submit.css" />
+<script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"
+></script>
+
 <div id="section" class="h-100">
   <section class="contact-wrap">
-    <form action="" class="contact-form"> 
+    <form action="" class="contact-form">
       <div class="col-sm-6">
         <div class="input-block">
           <label for="">API Name</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" id="inputname" />
         </div>
       </div>
       <div class="col-sm-6">
         <div class="input-block">
           <label for="">API URL</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" id="inputurl" />
         </div>
       </div>
       <span class="custom-dropdown big">
-        <select>
+        <select id="inputcat">
           <% options.forEach(option => { %>
           <option><%= option %></option>
           <% });%>
@@ -24,12 +30,15 @@
       <div class="col-sm-12">
         <div class="input-block">
           <label for="">Description</label>
-          <input type="text" class="form-control" />
+          <input type="text" class="form-control" id="inputdesc" />
         </div>
       </div>
       <div class="col-sm-12">
-        <button class="square-button">Send</button>
+        <button class="square-button" id="btn-send">Send</button>
       </div>
     </form>
   </section>
 </div>
+
+<script src="js/submit.js"></script>
+<script src="js/newapi.js"></script>

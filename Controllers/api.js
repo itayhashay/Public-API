@@ -10,9 +10,19 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/search', async (req, res) => {
-  let { q } = req.query;
+  let { name, uploadby, category, text } = req.query;
+  let query = [];
+  if (name == 'true') {
+    query = [...query, { name: { $regex: text, $options: 'i' } }]
+  }
+  if (uploadby == 'true') {
+    query = [...query, { uploadBy: { $regex: text, $options: 'i' } }]
+  }
+  if (category == 'true') {
+    query = [...query, { category: { $regex: text, $options: 'i' } }]
+  }
   const api = await Api.find({
-    $or: [{ name: { $regex: q, $options: 'i' } }, { description: { $regex: q, $options: 'i' } }, { url: { $regex: q, $options: 'i' } }, { category: { $regex: q, $options: 'i' } }]
+    $or: query
   });
   res.send({ data: api });
 })
@@ -26,6 +36,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // const category = await Category.findOne({ name: req.body.category })
   // req.body.category = category.name;
+  let img = req.body.category.replace(/\s/g, '');
+  req.body.img = `\\img\\${img}.png`;
+  //TODO: add dynamic user
+  req.body.uploadBy = "itayhashay";
   const newApi = new Api(req.body);
   await newApi.save();
   res.send({ data: newApi });

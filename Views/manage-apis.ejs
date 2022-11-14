@@ -31,28 +31,38 @@
                 </tr>
             </thead>
             <tbody>
-                <% apis.forEach(api => { %>
+                <% apis.forEach(api=> { %>
                     <tr>
                         <td class="text-center">
                             <!-- count ? -->
                         </td>
                         <td>
-                                <span class="data-list"><%= api.name %></span>
+                            <span class="data-list">
+                                <%= api.name %>
+                            </span>
                         </td>
                         <!-- <td>
                                 <span class="data-list"><%= api.description %></span>
                         </td> -->
                         <td>
-                            <span class="data-list"><%= api.url %></span>
+                            <span class="data-list">
+                                <%= api.url %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= api.categoryId %></span>
+                            <span class="data-list">
+                                <%= api.category %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= api.upload_by %></span>
+                            <span class="data-list">
+                                <%= api.upload_by %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= api.upvotes %></span>
+                            <span class="data-list">
+                                <%= api.upvotes %>
+                            </span>
                         </td>
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
@@ -63,7 +73,7 @@
                             </a>
                         </td>
                     </tr>
-                <% });%>
+                    <% });%>
             </tbody>
         </table>
 
