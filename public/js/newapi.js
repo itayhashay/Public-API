@@ -9,15 +9,20 @@ send.onclick = (submit) => {
   console.log(url.value);
   console.log(category.value);
   console.log(desc.value);
-  // $.ajax({
-  //     url: '/api' , // here you put the url path that will retrive the page
-  //     type: 'POST',
-  //     contenttype: 'application/json',
-  //     dataType: "json",
-  //     data: {},
-  //     success: ({ data }) => {
-  //         console.log(data)
-  //     }
-  // })
+  $.ajax({
+    url: "/api", // here you put the url path that will retrive the page
+    type: "POST",
+    contenttype: "application/json",
+    dataType: "json",
+    data: {
+      name: name.value,
+      description: desc.value,
+      url: url.value,
+      category: category.value,
+    },
+    success: ({ data }) => {
+      console.log(data);
+    },
+  });
   return false;
 };
