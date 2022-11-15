@@ -1,11 +1,12 @@
 $(document).ready(function () {
 
-    $('.delete-api').each(function () {
+    $('.delete-user').each(function () {
         var $this = $(this);
         $this.on("click", function () {
             var id = $(this).data('id')
+            console.log('/user/' + id);
             $.ajax({
-                url: '/api/' + id, // here you put the url path that will retrive the page
+                url: '/user/' + id, // here you put the url path that will retrive the page
                 type: 'DELETE',
                 contenttype: 'application/json',
                 dataType: "json",

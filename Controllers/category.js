@@ -50,8 +50,8 @@ router.post('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   const category = await Category.findByIdAndDelete(id);
-  const apis = await Api.find({ categoryId: category._id });
-  await Api.deleteMany({ categoryId: category._id });
+  const apis = await Api.find({ category: category.name });
+  await Api.deleteMany({ category: category.name });
   for (let api of apis) {
     await Bookmark.deleteMany({ apiId: api._id });
   }

@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
-    $('.delete-api').each(function () {
+    $('.delete-category').each(function () {
         var $this = $(this);
         $this.on("click", function () {
             var id = $(this).data('id')
             $.ajax({
-                url: '/api/' + id, // here you put the url path that will retrive the page
+                url: '/category/' + id, // here you put the url path that will retrive the page
                 type: 'DELETE',
                 contenttype: 'application/json',
                 dataType: "json",

@@ -1,3 +1,4 @@
+<script type="text/javascript" src="js/delete-user.js"></script>
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -30,36 +31,47 @@
                 </tr>
             </thead>
             <tbody>
-                <% users.forEach(user => { %>
+                <% users.forEach(user=> { %>
                     <tr>
                         <td class="text-center">
                             <!-- count ? -->
                         </td>
                         <td>
-                                <span class="data-list"><%= user.username %></span>
+                            <span class="data-list">
+                                <%= user.username %>
+                            </span>
                         </td>
                         <td>
-                                <span class="data-list"><%= user.firstName %></span>
+                            <span class="data-list">
+                                <%= user.firstName %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= user.lastName %></span>
+                            <span class="data-list">
+                                <%= user.lastName %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= user.email %></span>
+                            <span class="data-list">
+                                <%= user.email %>
+                            </span>
                         </td>
                         <td>
-                            <span class="data-list"><%= user.usertype %></span>
+                            <span class="data-list">
+                                <%= user.usertype %>
+                            </span>
                         </td>
                         <td>
                             <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                 <i class="uil uil-edit" data-toggle="tooltip" title="Edit"></i>
                             </a>
-                            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
+                            <a style="cursor: pointer" class="delete delete-user" data-id="<%=user.id%>"
+                                data-toggle="modal">
                                 <i class="uil uil-times-square" data-toggle="tooltip" title="delete"></i>
                             </a>
                         </td>
                     </tr>
-                <% });%>
+                    <% });%>
             </tbody>
         </table>
 
