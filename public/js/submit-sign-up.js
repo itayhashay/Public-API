@@ -25,12 +25,15 @@ send.onclick = (submit) => {
   //   contenttype: "application/json",
   //   dataType: "json",
   //   data: {
+
   //   },
   //   success: ({ data }) => {
   //     console.log(data);
   //   },
   // });
-  Validate();
+  if (!Validate()) {
+    return false;
+  }
   return false;
 };
 
@@ -46,61 +49,68 @@ function Validate() {
 
   //fname
   if (fnameVal === "") {
-    console.log("aa");
-    setErrorMsg(fname, "first name cannot be blank");
+    alert("first name cannot be blank");
+    return false;
+    // setErrorMsg(fname, "first name cannot be blank");
   } else if (fnameVal.length <= 2) {
-    setErrorMsg(fname, "min 3 char");
+    alert("min 3 char");
+    return false;
+    // setErrorMsg(fname, "min 3 char");
   } else {
-    setSuccessMsg(fname);
+    // setSuccessMsg(fname);
   }
 
-  //l name
+  // //l name
 
   if (lnameVal === "") {
-    setErrorMsg(lname, "last name cannot be blank");
+    alert("last name cannot be blank");
+    return false;
+    // setErrorMsg(lname, "last name cannot be blank");
   } else if (lnameVal.length <= 2) {
-    setErrorMsg(lname, "min 3 char");
+    alert("min 3 char");
+    return false;
+    //    setErrorMsg(lname, "min 3 char");
   } else {
-    setSuccessMsg(lname);
+    //setSuccessMsg(lname);
   }
 
   //uname
   if (unameVal === "") {
-    setErrorMsg(uname, "user name cannot be blank");
+    alert("user name cannot be blank");
+    //setErrorMsg(uname, "user name cannot be blank");
+    return false;
   } else if (!isuname(unameVal)) {
-    setErrorMsg(uname, "user name is not valid");
+    alert("user name is not valid");
+    return false;
+    //setErrorMsg(uname, "user name is not valid");
   } else {
-    setSuccessMsg(uname);
+    //setSuccessMsg(uname);
   }
 
   //password
   if (passwordVal === "") {
-    setErrorMsg(pass, "password cannot be blank");
+    alert("password cannot be blank");
+    //setErrorMsg(pass, "password cannot be blank");
+    return false;
   } else if (passwordVal.length <= 7) {
-    setErrorMsg(pass, "min 8 char");
+    alert("min 8 char");
+    //setErrorMsg(pass, "min 8 char");
+    return false;
   } else {
-    setSuccessMsg(pass);
-  }
-
-  //confirm password
-  if (cpasswordVal === "") {
-    setErrorMsg(cpass, "confirm password cannot be blank");
-  } else if (passwordVal != cpasswordVal) {
-    setErrorMsg(cpass, "Not Matched!");
-  } else {
-    setSuccessMsg(cpass);
+    //setSuccessMsg(pass);
   }
   // SuccessMsg(fnameVal);
+  return true;
 }
 
 function setErrorMsg(input, errormsgs) {
   const formControl = input.parentElement;
   const small = formControl.querySelector("small");
-  formControl.className = "form-control error";
+  formControl.className = " error";
   small.innerText = errormsgs;
 }
 
 function setSuccessMsg(input) {
   const formControl = input.parentElement;
-  formControl.className = "form-control success";
+  formControl.className = " success";
 }
