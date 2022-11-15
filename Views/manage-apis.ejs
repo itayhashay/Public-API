@@ -1,4 +1,6 @@
+<script type="text/javascript" src="js/add-api-manage.js"></script>
 <script type="text/javascript" src="js/delete-api.js"></script>
+
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -11,7 +13,7 @@
                 </div>
                 <div class="col-4"> </div>
                 <div class="col">
-                    <a href="#addEmployeeModal" class="btn btn-secondary" data-toggle="modal">
+                    <a class="btn btn-secondary" id="add-new-api" data-toggle="modal">
                         <i class="uil uil-plus"></i><span>Add New API</span>
                     </a>
                 </div>
@@ -57,7 +59,7 @@
                         </td>
                         <td>
                             <span class="data-list">
-                                <%= api.upload_by %>
+                                <%= api.uploadBy %>
                             </span>
                         </td>
                         <td>
