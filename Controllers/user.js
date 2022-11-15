@@ -45,7 +45,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   req.body.password = hash(req.body.password);
-  req.body.birthday = Date.parse(req.body.birthday) + (2 * 60 * 60 * 1000);
+  req.body.birthday = Date.parse(req.body.birthday);
   const newUser = new User(req.body);
   await newUser.save();
   delete newUser['_doc']["password"];

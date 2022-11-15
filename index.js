@@ -11,7 +11,7 @@ const categoryRoute = require('./Controllers/category'),
     userRoute = require('./Controllers/user'),
     apiRoute = require('./Controllers/api'),
     bookmarkRoute = require('./Controllers/bookmark'),
-    pages = require('./Controllers/pages')
+    pages = require('./Controllers/pages');
 
 //Static content
 app.use(express.static('public'))

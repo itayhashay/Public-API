@@ -238,6 +238,13 @@ router.get("/add-api", async (req, res) => {
     });
 });
 
+router.get("/add-user", async (req, res) => {
+    res.render("new-user-form", {
+        layout: "Layouts/main-div.ejs",
+    });
+});
+
+
 // admin path
 router.get('/admin', async (req, res) => {
     const apis_count = await Api.countDocuments();
