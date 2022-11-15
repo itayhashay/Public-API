@@ -25,4 +25,62 @@ send.onclick = (submit) => {
     },
   });
   return false;
+  Validate();
 };
+
+function Validate() {
+  const nameVal = name.value.trim();
+  const urlVal = url.value.trim();
+  const categoryVal = category.value.trim();
+  const descVal = desc.value.trim();
+
+  //name
+  if (nameVal === "") {
+    setErrorMsg(name, " name cannot be blank");
+  } else if (nameVal.length <= 2) {
+    setErrorMsg(name, "min 3 char");
+  } else {
+    setSuccessMsg(name);
+  }
+
+  //last name
+
+  if (urlVal === "") {
+    setErrorMsg(url, "url cannot be blank");
+  } else if (urlVal.length <= 2) {
+    setErrorMsg(url, "min 3 char");
+  } else {
+    setSuccessMsg(url);
+  }
+
+  //category
+  if (categoryVal === "") {
+    setErrorMsg(category, "category cannot be blank");
+  } else if (!iscategory(categoryVal)) {
+    setErrorMsg(category, "category is not valid");
+  } else {
+    setSuccessMsg(category);
+  }
+
+  //descval
+  if (descVal === "") {
+    setErrorMsg(descval, "descval cannot be blank");
+  } else if (descvalVal.length <= 7) {
+    setErrorMsg(descval, "min 8 char");
+  } else {
+    setSuccessMsg(descval);
+  }
+  SuccessMsg(nameVal);
+}
+
+function setErrorMsg(input, errormsgs) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  formControl.className = "form-control error";
+  small.innerText = errormsgs;
+}
+
+function setSuccessMsg(input) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+}
