@@ -1,6 +1,7 @@
 const express = require('express'),
   hash = require('object-hash'),
   User = require('../Models/user'),
+  Api = require('../Models/api'),
   Bookmark = require('../Models/bookmark'),
   router = express.Router();
 
@@ -9,6 +10,18 @@ router.get('/', async (req, res) => {
   for (let i = 0; i < users.length; i++) {
     delete users[i]['_doc']["password"];
   }
+  res.send({ data: users });
+})
+
+router.get('/statistics', async (req, res) => {
+  const users = await Api.aggregate([
+    {
+      $group: {
+        _id: '$uploadBy',
+        count: { $sum: 1 } // this means that the count will increment by 1
+      }
+    }
+  ]);
   res.send({ data: users });
 })
 

@@ -29,19 +29,27 @@
     </div>
 </div>
 
-<div class="overview">
+<div class="overview bottom-overview">
     <div class="title">
         <i class="uil uil-tachometer-fast-alt"></i>
         <span class="text">APIs By Categories (3djs)</span>
     </div>
+    <div id="svg2"></div>
+    <div class="title" id="title2">
+        <i class="uil uil-tachometer-fast-alt"></i>
+        <span class="text">APIs By Upload By (3djs)</span>
+    </div>
+    <div id="svg1"></div>
+
 
     <!DOCTYPE html>
     <meta charset="utf-8">
     <style>
         body {
+            /* background-color: #ffffff; */
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             /* width: 960px; */
-            height: 500px;
+            height: 700px;
             position: relative;
         }
 
@@ -59,6 +67,18 @@
             stroke: black;
             stroke-width: 2px;
             fill: none;
+        }
+
+        .bottom-overview {
+            padding-bottom: 50%;
+        }
+
+        /* #svg1 {
+            margin-top: 30%;
+        } */
+
+        #title2 {
+            margin-top: 50%;
         }
     </style>
     <div>
@@ -80,16 +100,15 @@
                     categories.forEach(c => {
                         sum += c.count;
                     });
-                    var svg = d3.select("#main")
-                        .append("svg")
+                    var svg1 = d3.select("#svg1")
+                        .append("svg").attr('id', 'svg1')
                         .append("g")
-
-                    svg.append("g")
-                        .attr("class", "slices");
-                    svg.append("g")
-                        .attr("class", "labels");
-                    svg.append("g")
-                        .attr("class", "lines");
+                    svg1.append("g")
+                        .attr("class", "slices1");
+                    svg1.append("g")
+                        .attr("class", "labels1");
+                    svg1.append("g")
+                        .attr("class", "lines1");
 
                     var width = 960,
                         height = 450,
@@ -109,7 +128,7 @@
                         .innerRadius(radius * 0.9)
                         .outerRadius(radius * 0.9);
 
-                    svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                    svg1.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
                     var key = function (d) { return d.data.label; };
 
@@ -136,13 +155,13 @@
 
                     function change(data) {
                         /* ------- PIE SLICES -------*/
-                        var slice = svg.select(".slices").selectAll("path.slice")
+                        var slice = svg1.select(".slices1").selectAll("path.slice")
                             .data(pie(data), key);
 
                         slice.enter()
                             .insert("path")
                             .style("fill", function (d) { return color(d.data.label); })
-                            .attr("class", "slice");
+                            .attr("class", "slice1");
 
                         slice
                             .transition().duration(1000)
@@ -160,7 +179,7 @@
 
                         /* ------- TEXT LABELS -------*/
 
-                        var text = svg.select(".labels").selectAll("text")
+                        var text = svg1.select(".labels1").selectAll("text")
                             .data(pie(data), key);
 
                         text.enter()
@@ -201,7 +220,7 @@
 
                         /* ------- SLICE TO TEXT POLYLINES -------*/
 
-                        var polyline = svg.select(".lines").selectAll("polyline")
+                        var polyline = svg1.select(".lines1").selectAll("polyline")
                             .data(pie(data), key);
 
                         polyline.enter()
@@ -225,12 +244,167 @@
                     };
                 }
             })
-            console.log(categories);
-            // let categoriesName = categories.map((c) => {
-            //     console.log(c.id);
-            //     return c.id;
-            // })
 
+            $.ajax({
+                url: '/user/statistics', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'application/json',
+                dataType: "json",
+                data: {},
+                success: ({ data }) => {
+                    users = data;
+                    let usersName = users.map(c => {
+                        return c._id;
+                    })
+                    let sum = 0;
+                    users.forEach(c => {
+                        sum += c.count;
+                    });
+                    var svg = d3.select("#svg2")
+                        .append("svg")
+                        .append("g")
+
+                    svg.append("g")
+                        .attr("class", "slices2");
+                    svg.append("g")
+                        .attr("class", "labels2");
+                    svg.append("g")
+                        .attr("class", "lines2");
+
+                    var width = 960,
+                        height = 450,
+                        radius = Math.min(width, height) / 2;
+
+                    var pie = d3.layout.pie()
+                        .sort(null)
+                        .value(function (d) {
+                            return d.value;
+                        });
+
+                    var arc = d3.svg.arc()
+                        .outerRadius(radius * 0.8)
+                        .innerRadius(radius * 0.4);
+
+                    var outerArc = d3.svg.arc()
+                        .innerRadius(radius * 0.9)
+                        .outerRadius(radius * 0.9);
+
+                    svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+                    var key = function (d) { return d.data.label; };
+
+                    var color = d3.scale.ordinal()
+                        // Itay Todo to do
+                        // add here all the categories you want to show in the pie chart
+                        .domain(usersName)
+                        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+                    function GetData() {
+                        var labels = color.domain();
+                        return users.map(function (label) {
+                            return { label: label._id, value: label.count / sum }
+                        });
+                    }
+
+                    change(GetData());
+
+                    d3.select(".randomize")
+                        .on("click", function () {
+                            change(GetData());
+                        });
+
+
+                    function change(data) {
+                        /* ------- PIE SLICES -------*/
+                        var slice = svg.select(".slices2").selectAll("path.slice")
+                            .data(pie(data), key);
+
+                        slice.enter()
+                            .insert("path")
+                            .style("fill", function (d) { return color(d.data.label); })
+                            .attr("class", "slice2");
+
+                        slice
+                            .transition().duration(1000)
+                            .attrTween("d", function (d) {
+                                this._current = this._current || d;
+                                var interpolate = d3.interpolate(this._current, d);
+                                this._current = interpolate(0);
+                                return function (t) {
+                                    return arc(interpolate(t));
+                                };
+                            })
+
+                        slice.exit()
+                            .remove();
+
+                        /* ------- TEXT LABELS -------*/
+
+                        var text = svg.select(".labels2").selectAll("text")
+                            .data(pie(data), key);
+
+                        text.enter()
+                            .append("text")
+                            .attr("dy", ".35em")
+                            .text(function (d) {
+                                return d.data.label;
+                            });
+
+                        function midAngle(d) {
+                            return d.startAngle + (d.endAngle - d.startAngle) / 2;
+                        }
+
+                        text.transition().duration(1000)
+                            .attrTween("transform", function (d) {
+                                this._current = this._current || d;
+                                var interpolate = d3.interpolate(this._current, d);
+                                this._current = interpolate(0);
+                                return function (t) {
+                                    var d2 = interpolate(t);
+                                    var pos = outerArc.centroid(d2);
+                                    pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                                    return "translate(" + pos + ")";
+                                };
+                            })
+                            .styleTween("text-anchor", function (d) {
+                                this._current = this._current || d;
+                                var interpolate = d3.interpolate(this._current, d);
+                                this._current = interpolate(0);
+                                return function (t) {
+                                    var d2 = interpolate(t);
+                                    return midAngle(d2) < Math.PI ? "start" : "end";
+                                };
+                            });
+
+                        text.exit()
+                            .remove();
+
+                        /* ------- SLICE TO TEXT POLYLINES -------*/
+
+                        var polyline = svg.select(".lines2").selectAll("polyline")
+                            .data(pie(data), key);
+
+                        polyline.enter()
+                            .append("polyline");
+
+                        polyline.transition().duration(1000)
+                            .attrTween("points", function (d) {
+                                this._current = this._current || d;
+                                var interpolate = d3.interpolate(this._current, d);
+                                this._current = interpolate(0);
+                                return function (t) {
+                                    var d2 = interpolate(t);
+                                    var pos = outerArc.centroid(d2);
+                                    pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                                    return [arc.centroid(d2), outerArc.centroid(d2), pos];
+                                };
+                            });
+
+                        polyline.exit()
+                            .remove();
+                    };
+                }
+            })
 
         </script>
     </div>
