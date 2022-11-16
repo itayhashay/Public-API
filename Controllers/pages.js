@@ -248,9 +248,11 @@ router.get('/bookmarks', async (req, res) => {
     )
 })
 
-router.get("/profile", (req, res) => {
+router.get("/profile", async (req, res) => {
+    let username = req.cookies.username ? req.cookies.username : "itayhashay";
+    let user = await User.find({ username: username });
     res.render("profile", {
-        // profile: profile,
+        user: user[0],
         layout: "Layouts/main-div.ejs",
     });
 });

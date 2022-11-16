@@ -6,40 +6,51 @@
           <h1 class="m-3 pt-3">About me</h1>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h4>Full name</h4>
               </div>
-              <div class="col-mb-9 text-secondary">full name+last name</div>
+              <div class="col-mb-8 text-secondary">
+                <%=user.firstName%>
+                  <%=user.lastName%>
+              </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h4>Username</h4>
               </div>
-              <div class="col-md-9 text secondary">jonjon23</div>
+              <div class="col-md-8 text secondary">
+                <%=user.username%>
+              </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h4>Email</h4>
               </div>
-              <div class="col-md-9 text secondary">email@gmail.com</div>
+              <div class="col-md-8 text secondary">
+                <%=user.email%>
+              </div>
             </div>
             <hr />
             <div class="row">
-              <div class="col-md-3">
-                <h4>Birth day</h4>
+              <div class="col-md-4">
+                <h4>Birthday</h4>
               </div>
-              <div class="col-md-9 text-secondary">10/04/1996</div>
+              <div class="col-md-8 text-secondary">
+                <%=user.birthday%>
+              </div>
             </div>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <h4>Gender</h4>
               </div>
-              <div class="col-md-9 text secondary">male</div>
+              <div class="col-md-8 text secondary">
+                <%=user.gender%>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card mb-3 content">
+        <!-- <div class="card mb-3 content">
           <h1 class="m-3">My Api</h1>
           <div class="card-body">
             <div class="row">
@@ -47,7 +58,7 @@
             </div>
             <div class="col-md-9 text secondary">api description</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
