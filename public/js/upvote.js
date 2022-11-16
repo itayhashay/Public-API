@@ -18,5 +18,23 @@ $(document).ready(function () {
             })
         });
     });
-
+    $('.bookmark').each(function () {
+        var $this = $(this);
+        $this.on("click", function () {
+            var id = $(this).data('id')
+            console.log('/bookmark/' + id);
+            $.ajax({
+                url: '/bookmark', // here you put the url path that will retrive the page
+                type: 'POST',
+                contenttype: 'application/json',
+                dataType: "json",
+                data: {
+                    apiId: id
+                },
+                success: ({ data }) => {
+                    console.log(data)
+                }
+            })
+        });
+    });
 });

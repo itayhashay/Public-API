@@ -52,9 +52,21 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const newBookmark = new Bookmark(req.body);
-  await newBookmark.save();
-  res.send({ data: newBookmark });
+  let username = req.cookies.username ? req.cookies.username : "itayhashay";
+  const user = await User.find({ username: username });
+  let bookmark;
+  const currentBookmarks = await Bookmark.find({ userId: user[0]._id, apiId: req.body.apiId });
+  if (currentBookmarks.length) {
+    bookmark = await Bookmark.findByIdAndDelete(currentBookmarks[0]._id);
+  } else {
+    let data = {
+      userId: user[0]._id,
+      apiId: req.body.apiId
+    }
+    bookmark = new Bookmark(data);
+    await bookmark.save();
+  }
+  res.send({ data: bookmark });
 })
 
 router.put('/:id', async (req, res) => {

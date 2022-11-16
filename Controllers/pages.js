@@ -386,16 +386,18 @@ router.get('/random-apis', async (req, res) => {
 });
 
 router.get('/bookmarks', async (req, res) => {
-    //TODO: Add Bookmarks by user (dynamic)
-    const userId = "6353085cb249c7ed72bfdb35";
+    let username = req.cookies.username ? req.cookies.username : "itayhashay";
+    const user = await User.find({ username: username });
+    const userId = user[0]._id.toString();
     const bookmarks = await Bookmarks.find({ userId: userId });
     let data = [];
     for (let i = 0; i < bookmarks.length; i++) {
-        data[i] = await bookmarkParser(bookmarks[i]).api;
+        let book = await bookmarkParser(bookmarks[i]);
+        data[i] = book.api;
     }
     res.render('cards',
         {
-            cards: bookmarks,
+            cards: data,
             layout: 'Layouts/main-div.ejs'
         }
     )
@@ -430,11 +432,12 @@ const bookmarkParser = async (bookmark) => {
     user = await User.findById(bookmark.userId)
     delete user['_doc']["password"];
     api = await Api.findById(bookmark.apiId)
-    return {
+    let data = {
         "id": bookmark.id,
         "user": user,
         "api": api
     }
+    return data
 }
 
 module.exports = router;
