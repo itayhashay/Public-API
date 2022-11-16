@@ -8,7 +8,29 @@ const User = require("../Models/user"),
 
 router.use(expressLayouts);
 
-router.get("/", async (req, res) => {
+const middleware = (req, res, next) => {
+    if (req.cookies.username)
+        next();
+    else
+        res.redirect('/login');
+}
+
+
+const isAdmin = (req, res, next) => {
+    if (req.cookies.type.toLowerCase() == 'admin')
+        next();
+    else
+        res.redirect('/login');
+}
+
+const isLoggedIn = (req, res, next) => {
+    if (req.cookies.username)
+        res.redirect('/');
+    else
+        next();
+}
+
+router.get("/", middleware, async (req, res) => {
     let { name, uploadby, category, text } = req.query;
     let query = [];
     if (text !== undefined) {
@@ -31,7 +53,7 @@ router.get("/", async (req, res) => {
     });
 });
 
-router.get("/render", async (req, res) => {
+router.get("/render", middleware, async (req, res) => {
     const apis = req;
     console.log(req)
     res.render("Cards", {
@@ -40,14 +62,14 @@ router.get("/render", async (req, res) => {
     });
 });
 
-router.get("/test", async (req, res) => {
+router.get("/test", middleware, async (req, res) => {
     res.render("submit-new-api", {
         options: ["test1", "test2", "test3"],
         layout: "Layouts/navbar.ejs",
     });
 });
 
-router.get("/edit-api/:id", async (req, res) => {
+router.get("/edit-api/:id", middleware, async (req, res) => {
     let api = await Api.findById(req.params.id);
     let categories = await Category.find({});
     categories = categories.map(c => c.name)
@@ -58,7 +80,7 @@ router.get("/edit-api/:id", async (req, res) => {
     });
 });
 
-router.get("/edit-category/:id", async (req, res) => {
+router.get("/edit-category/:id", middleware, async (req, res) => {
     const category = await Category.findById(req.params.id);
     res.render("edit-category-form", {
         category: category,
@@ -66,7 +88,7 @@ router.get("/edit-category/:id", async (req, res) => {
     });
 });
 
-router.get("/edit-user/:id", async (req, res) => {
+router.get("/edit-user/:id", middleware, async (req, res) => {
     const user = await User.findById(req.params.id);
     res.render("edit-user-form", {
         user: user,
@@ -75,7 +97,7 @@ router.get("/edit-user/:id", async (req, res) => {
 });
 
 
-router.get("/add-api", async (req, res) => {
+router.get("/add-api", middleware, async (req, res) => {
     let categories = await Category.find({});
     categories = categories.map(c => c.name)
     res.render("submit-new-api", {
@@ -84,13 +106,13 @@ router.get("/add-api", async (req, res) => {
     });
 });
 
-router.get("/add-category", async (req, res) => {
+router.get("/add-category", middleware, async (req, res) => {
     res.render("new-category-form", {
         layout: "Layouts/main-div.ejs",
     });
 });
 
-router.get("/add-user", async (req, res) => {
+router.get("/add-user", middleware, async (req, res) => {
     res.render("new-user-form", {
         layout: "Layouts/main-div.ejs",
     });
@@ -98,7 +120,7 @@ router.get("/add-user", async (req, res) => {
 
 
 // admin path
-router.get('/admin', async (req, res) => {
+router.get('/admin', isAdmin, async (req, res) => {
     const apis_count = await Api.countDocuments();
     const users_count = await User.countDocuments();
     const sum_upvotes = await Api.aggregate([
@@ -117,7 +139,7 @@ router.get('/admin', async (req, res) => {
     )
 })
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', isAdmin, async (req, res) => {
     const apis_count = await Api.countDocuments();
     const users_count = await User.countDocuments();
     const sum_upvotes = await Api.aggregate([
@@ -153,7 +175,7 @@ router.get('/dashboard', async (req, res) => {
     )
 })
 
-router.get('/manage-apis', async (req, res) => {
+router.get('/manage-apis', isAdmin, async (req, res) => {
     const apis = await Api.find({});
     res.render('manage-apis',
         {
@@ -163,7 +185,7 @@ router.get('/manage-apis', async (req, res) => {
     )
 })
 // admin path
-router.get('/manage-users', async (req, res) => {
+router.get('/manage-users', isAdmin, async (req, res) => {
     const users = await User.find({});
     res.render('manage-users',
         {
@@ -173,7 +195,7 @@ router.get('/manage-users', async (req, res) => {
     )
 })
 
-router.get('/manage-categories', async (req, res) => {
+router.get('/manage-categories', isAdmin, async (req, res) => {
     const category = await Category.find({});
     res.render('manage-categories',
         {
@@ -183,7 +205,7 @@ router.get('/manage-categories', async (req, res) => {
     )
 })
 
-router.get('/latest-apis', async (req, res) => {
+router.get('/latest-apis', middleware, async (req, res) => {
     let { name, uploadby, category, text } = req.query;
     let query = [];
     if (text !== undefined) {
@@ -208,7 +230,7 @@ router.get('/latest-apis', async (req, res) => {
     )
 })
 
-router.get('/best-rated-apis', async (req, res) => {
+router.get('/best-rated-apis', middleware, async (req, res) => {
     const apis = await Api.find({}).sort({ upvotes: 'descending' }).limit(5);
     res.render('cards',
         {
@@ -218,7 +240,7 @@ router.get('/best-rated-apis', async (req, res) => {
     )
 })
 
-router.get('/random-apis', async (req, res) => {
+router.get('/random-apis', middleware, async (req, res) => {
     const apis = await Api.find({});
     const api = [];
     api[0] = apis[Math.floor(Math.random() * apis.length - 1)];
@@ -230,7 +252,7 @@ router.get('/random-apis', async (req, res) => {
     )
 });
 
-router.get('/bookmarks', async (req, res) => {
+router.get('/bookmarks', middleware, async (req, res) => {
     let username = req.cookies.username ? req.cookies.username : "itayhashay";
     const user = await User.find({ username: username });
     const userId = user[0]._id.toString();
@@ -248,7 +270,7 @@ router.get('/bookmarks', async (req, res) => {
     )
 })
 
-router.get("/profile", async (req, res) => {
+router.get("/profile", middleware, async (req, res) => {
     let username = req.cookies.username ? req.cookies.username : "itayhashay";
     let user = await User.find({ username: username });
     res.render("profile", {
@@ -256,13 +278,13 @@ router.get("/profile", async (req, res) => {
         layout: "Layouts/main-div.ejs",
     });
 });
-router.get("/sign-up", (req, res) => {
+router.get("/sign-up", isLoggedIn, (req, res) => {
     res.render("sign-up", {
         // profile: profile,
         layout: "Layouts/StandAlonePage.ejs",
     });
 });
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedIn, (req, res) => {
     res.render("login", {
         // profile: profile,
         layout: "Layouts/StandAlonePage.ejs",

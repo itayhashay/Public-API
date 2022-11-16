@@ -1,176 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!----======== CSS ======== -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="css\navbar.css" />
-    <link rel="stylesheet" href="css\card.css" />
-    <link rel="stylesheet" href="css\login.css" />
-    <link rel="stylesheet" href="css\sign-up.css" />
-    <link rel="stylesheet" href="css\profile.css" />
-    <link rel="stylesheet" href="css\submit.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <!----===== Iconscout CSS ===== -->
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Public API Homepage</title>
-  </head>
+  <!----======== CSS ======== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="css\navbar.css" />
+  <link rel="stylesheet" href="css\card.css" />
+  <link rel="stylesheet" href="css\login.css" />
+  <link rel="stylesheet" href="css\sign-up.css" />
+  <link rel="stylesheet" href="css\profile.css" />
+  <link rel="stylesheet" href="css\submit.css" />
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <!----===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 
-  <body>
-    <nav>
-      <div class="logo-name">
-        <div class="logo-image">
-          <!--<img src="images/logo.png" alt="">-->
-        </div>
+  <title>Public API Homepage</title>
+</head>
 
-        <span class="logo_name">Public API</span>
+<body>
+  <nav>
+    <div class="logo-name">
+      <div class="logo-image">
+        <!--<img src="images/logo.png" alt="">-->
       </div>
 
-      <div class="menu-items">
-        <ul class="nav-links">
-          <li>
-            <a class="active" href="#">
-              <i class="uil uil-clock active-icon"></i>
-              <span class="active-text">Latest APIs</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="uil uil-thumbs-up non-active-icon"></i>
-              <span class="link-name">Best Rated APIs</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="uil uil-arrow-random non-active-icon"></i>
-              <span class="link-name">Random APIs</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="uil-favorite non-active-icon"></i>
-              <span class="link-name">Bookmarks</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="uil uil-plus non-active-icon"></i>
-              <span class="link-name">Add API</span>
-            </a>
-          </li>
-        </ul>
+      <span class="logo_name">Public API</span>
+    </div>
 
-        <ul class="logout-mode">
-          <li>
-            <a href="#">
-              <i class="uil-user non-active-icon"></i>
-              <span class="link-name">Profile</span>
-            </a>
-          </li>
+    <div class="menu-items">
+      <ul class="nav-links">
+        <li>
+          <a class="active" href="#">
+            <i class="uil uil-clock active-icon"></i>
+            <span class="active-text">Latest APIs</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="uil uil-thumbs-up non-active-icon"></i>
+            <span class="link-name">Best Rated APIs</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="uil uil-arrow-random non-active-icon"></i>
+            <span class="link-name">Random APIs</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="uil-favorite non-active-icon"></i>
+            <span class="link-name">Bookmarks</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="uil uil-plus non-active-icon"></i>
+            <span class="link-name">Add API</span>
+          </a>
+        </li>
+      </ul>
 
-          <li>
-            <a href="#">
-              <i class="uil uil-signout non-active-icon"></i>
-              <span class="link-name">Logout</span>
-            </a>
-          </li>
+      <ul class="logout-mode">
+        <li>
+          <a href="#">
+            <i class="uil-user non-active-icon"></i>
+            <span class="link-name">Profile</span>
+          </a>
+        </li>
 
-          <li class="mode">
-            <a href="#">
-              <i class="uil uil-moon non-active-icon"></i>
-              <span class="link-name">Dark Mode</span>
-            </a>
+        <li>
+          <a href="#" id="logout">
+            <i class="uil uil-signout non-active-icon"></i>
+            <span class="link-name">Logout</span>
+          </a>
+        </li>
 
-            <div class="mode-toggle">
-              <span class="switch"></span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+        <li class="mode">
+          <a href="#">
+            <i class="uil uil-moon non-active-icon"></i>
+            <span class="link-name">Dark Mode</span>
+          </a>
 
-    <section class="dashboard">
-      <div class="top">
-        <i class="uil uil-bars sidebar-toggle"></i>
+          <div class="mode-toggle">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-        <div class="search-box">
-          <i class="uil uil-search"></i>
-          <input id="search-box-input" type="text" placeholder="Search here..." />
-        </div>
+  <section class="dashboard">
+    <div class="top">
+      <i class="uil uil-bars sidebar-toggle"></i>
 
-        <!-- this is the checkbox parameters for the search -->
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="Checkbox-name"
-            value="Name"
-            checked
-          />
-          <label class="form-check-label" for="inlineCheckbox1">Name</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="Checkbox-category"
-            value="Category"
-            checked
-          />
-          <label class="form-check-label" for="inlineCheckbox2">Category</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="Checkbox-uploadby"
-            value="Upload By"
-            checked
-          />
-          <label class="form-check-label" for="inlineCheckbox2"
-            >Upload By</label
-          >
-        </div>
-
-        <!--<img src="images/profile.jpg" alt="">-->
+      <div class="search-box">
+        <i class="uil uil-search"></i>
+        <input id="search-box-input" type="text" placeholder="Search here..." />
       </div>
 
-      <div id="main" class="dash-content">
-        <%- body %>
+      <!-- this is the checkbox parameters for the search -->
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="Checkbox-name" value="Name" checked />
+        <label class="form-check-label" for="inlineCheckbox1">Name</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="Checkbox-category" value="Category" checked />
+        <label class="form-check-label" for="inlineCheckbox2">Category</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="Checkbox-uploadby" value="Upload By" checked />
+        <label class="form-check-label" for="inlineCheckbox2">Upload By</label>
+      </div>
+
+      <!--<img src="images/profile.jpg" alt="">-->
+    </div>
+
+    <div id="main" class="dash-content">
+      <%- body %>
 
         <!-- load more button
                 <div class="d-grid gap-2 col-6 mx-auto">
                     <button class="btn btn-dark load-more" type="button">Load More</button>
                 </div> -->
-      </div>
-    </section>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-      crossorigin="anonymous"
-    ></script>
-    <%- include("../partials/tooltipScript.ejs") %> <%-
-    include("../partials/navbar.ejs") %> <%-
-    include("../partials/submitScript.ejs") %>
-  </body>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <%- include("../partials/tooltipScript.ejs") %>
+    <%- include("../partials/navbar.ejs") %>
+      <%- include("../partials/submitScript.ejs") %>
+</body>
+
 </html>
