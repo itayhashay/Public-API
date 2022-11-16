@@ -15,6 +15,14 @@ const middleware = (req, res, next) => {
         res.redirect('/login');
 }
 
+const homePageMiddleware = (req, res, next) => {
+    if (req.cookies.type.toLowerCase() == 'client')
+        next();
+    else if (req.cookies.type.toLowerCase() == 'admin')
+        res.redirect('/admin');
+    else
+        res.redirect('/login');
+}
 
 const isAdmin = (req, res, next) => {
     if (req.cookies.type.toLowerCase() == 'admin')
@@ -30,7 +38,7 @@ const isLoggedIn = (req, res, next) => {
         next();
 }
 
-router.get("/", middleware, async (req, res) => {
+router.get("/", homePageMiddleware, async (req, res) => {
     let { name, uploadby, category, text } = req.query;
     let query = [];
     if (text !== undefined) {
