@@ -57,7 +57,7 @@ router.post('/login', async (req, res) => {
   const user = await User.findOne({ username: username });
 
   const loggedIn = hash(password) == user.password;
-  res.send({ data: { loggedIn: loggedIn, userType: loggedIn ? user.userType : 'CLIENT' } });
+  res.send({ data: { loggedIn: loggedIn, userType: loggedIn ? user.userType : 'CLIENT', username: user.username } });
 })
 
 router.put('/:id', async (req, res) => {
