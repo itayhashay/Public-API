@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="css\submit.css" />
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<div id="section" class="h-100">
+  <section class="contact-wrap id" data-id="<%=user.id%>">
+    <form action="" class="contact-form">
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">First Name</label>
+          <input type="text" class="form-control" id="firstname" value=<%=user.firstName%> />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">Last Name</label>
+          <input type="text" class="form-control" id="lastname" value="<%=user.lastName%>" />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">Username</label>
+          <input type="text" class="form-control" id="username" value="<%=user.username%>" disabled />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-block" id="b-input">
+          <select class="form-select" aria-label="Default select example" id="gender">
+            <option selected>Gender</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-block" id="b-input">
+          <input type="date" id="birthday" value="<%=user.birthday%>" />
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="input-block">
+          <label for="">Email</label>
+          <input type="email" class="form-control" id="emailAddr" value="<%=user.email%>" />
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button class="square-button" id="btn-send">Send</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script src="js/submit.js"></script>
+<script src="js/edit-user.js"></script>

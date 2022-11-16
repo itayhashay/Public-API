@@ -1,3 +1,4 @@
+<script type="text/javascript" src="js/edit-api-manage.js"></script>
 <script type="text/javascript" src="js/add-api-manage.js"></script>
 <script type="text/javascript" src="js/delete-api.js"></script>
 
@@ -68,7 +69,8 @@
                             </span>
                         </td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                            <a style="cursor: pointer;" class="edit edit-api" id="edit-api" data-id=<%=api.id %>
+                                data-toggle="modal">
                                 <i class="uil uil-edit" data-toggle="tooltip" title="Edit"></i>
                             </a>
                             <a class="delete delete-api" style="cursor: pointer;" data-id=<%=api.id %>

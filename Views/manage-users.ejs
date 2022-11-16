@@ -1,5 +1,6 @@
 <script type="text/javascript" src="js/add-user-manage.js"></script>
 <script type="text/javascript" src="js/delete-user.js"></script>
+<script type="text/javascript" src="js/edit-user-manage.js"></script>
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">
@@ -63,7 +64,8 @@
                             </span>
                         </td>
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                            <a style="cursor: pointer" class="edit edit-user" data-id="<%=user.id%>"
+                                data-toggle="modal">
                                 <i class="uil uil-edit" data-toggle="tooltip" title="Edit"></i>
                             </a>
                             <a style="cursor: pointer" class="delete delete-user" data-id="<%=user.id%>"

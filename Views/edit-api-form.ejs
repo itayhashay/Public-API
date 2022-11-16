@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="css\submit.css" />
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<div id="section" class="h-100">
+  <section class="contact-wrap id" data-id=<%=api.id%>>
+    <form action="" class="contact-form">
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">API Name</label>
+          <input type="text" class="form-control" id="inputname" value=<%=api.name%> />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">API URL</label>
+          <input type="text" class="form-control" id="inputurl" value=<%=api.url%> />
+        </div>
+      </div>
+      <span class="custom-dropdown big">
+        <select id="inputcat" value=<%=api.category%>>
+          <% options.forEach(option=> { %>
+            <option>
+              <%= option %>
+            </option>
+            <% });%>
+        </select>
+      </span>
+      <div class="col-sm-12">
+        <div class="input-block">
+          <label for="">Description</label>
+          <input type="text" class="form-control" id="inputdesc" value="<%=api.description%>" />
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button class="square-button" id="btn-send">Send</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script src="js/submit.js"></script>
+<script src="js/edit-api.js"></script>

@@ -1,4 +1,5 @@
 <script type="text/javascript" src="js/delete-category.js"></script>
+<script type="text/javascript" src="js/edit-category-manage.js"></script>
 <script type="text/javascript" src="js/add-category-manage.js"></script>
 <div class="container">
     <div class="table-wrapper">
@@ -54,7 +55,8 @@
                                 </span>
                             </td> -->
                         <td>
-                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                            <a style="cursor: pointer" class="edit edit-category" data-id=<%=cat.id %>
+                                data-toggle="modal">
                                 <i class="uil uil-edit" data-toggle="tooltip" title="Edit"></i>
                             </a>
                             <a style="cursor: pointer" class="delete delete-category" data-id=<%=cat.id %>

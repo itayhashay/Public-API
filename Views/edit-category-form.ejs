@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="css\submit.css" />
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<div id="section" class="h-100">
+  <section class="contact-wrap id" data-id="<%=category.id%>">
+    <form action="" class="contact-form">
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">Category Name</label>
+          <input type="text" class="form-control" id="name" value="<%=category.name%>" disabled />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="input-block">
+          <label for="">Description</label>
+          <input type="text" class="form-control" id="desc" value="<%=category.description%>" />
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <button class="square-button" id="btn-send">Send</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script src="js/submit.js"></script>
+<script src="js/edit-category.js"></script>

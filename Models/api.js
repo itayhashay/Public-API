@@ -8,8 +8,7 @@ const apiSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        require: true,
-        trim: true
+        require: true
     },
     upvotes: {
         type: Number,

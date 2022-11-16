@@ -38,8 +38,7 @@ router.post('/', async (req, res) => {
   // req.body.category = category.name;
   let img = req.body.category.replace(/\s/g, '');
   req.body.img = `\\img\\${img}.png`;
-  //TODO: add dynamic user
-  req.body.uploadBy = "itayhashay";
+  req.body.uploadBy = req.cookies.username ? req.cookies.username : "itayhashay";
   const newApi = new Api(req.body);
   await newApi.save();
   res.send({ data: newApi });
