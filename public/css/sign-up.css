@@ -4,6 +4,7 @@ body {
   background: #fff;
   margin: 0;
   padding: 0;
+  background-color: #333 !important;
 }
 
 /* Style for text
@@ -22,6 +23,15 @@ textarea {
 }
 h3 {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.8px 10.5px rgba(0, 0, 0, 0.58);
+  width: 750px;
+  max-width: 100% !important;
 }
 .wrap {
   border: #333;
@@ -68,7 +78,7 @@ h3 {
 }
 
 .contact-form {
-  width: 50%;
+  width: 100% !important;
   margin: 0 auto;
   padding: 10px;
 }
@@ -96,7 +106,7 @@ h3 {
 .contact-form #b-input #birthday {
   background-color: #3a3b3c;
   color: #fff;
-  width: 100%;
+  width: 100% !important; 
   height: 70%;
   border-radius: 5px;
   box-shadow: none;
