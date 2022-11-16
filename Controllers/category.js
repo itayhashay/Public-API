@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   res.send({ data: newCategory });
 })
 
-router.post('/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const category = await Category.findByIdAndUpdate(id, req.body, { new: true });
   await category.save();

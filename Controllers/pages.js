@@ -238,6 +238,12 @@ router.get("/add-api", async (req, res) => {
     });
 });
 
+router.get("/add-category", async (req, res) => {
+    res.render("new-category-form", {
+        layout: "Layouts/main-div.ejs",
+    });
+});
+
 router.get("/add-user", async (req, res) => {
     res.render("new-user-form", {
         layout: "Layouts/main-div.ejs",
