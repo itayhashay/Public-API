@@ -20,8 +20,10 @@ $(document).ready(function () {
         },
         success: ({ data }) => {
           console.log(data);
+          location.assign('/');
         }
       });
+      return false;
     });
   });
 
