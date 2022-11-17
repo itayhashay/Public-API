@@ -5,11 +5,11 @@ $(document).ready(function () {
         // prevent the default actions
         e.preventDefault();
         e.stopPropagation();
-        
+
         alert("hello");
     })
 });
-        
+
 //temp
 // this function adds ajax to the navbar
 $(document).ready(function () {
@@ -21,120 +21,124 @@ $(document).ready(function () {
         // page is the page to load
         var page = $(this).find("span").text();
         //print the page name
-        console.log('loading the '+ $(this).find("span").text() + 'page using ajax');
-        
+        console.log('loading the ' + $(this).find("span").text() + 'page using ajax');
+
         if (page == "Dashboard") {
-            $.ajax( {
-              url: '/dashboard',
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/dashboard',
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
-        }        
+        }
         if (page == "Manage APIs") {
-            $.ajax( {
-              url: '/manage-apis',
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/manage-apis',
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
         if (page == "Manage Users") {
-            $.ajax( {
-              url: '/manage-users',
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/manage-users',
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
         if (page == "Manage Categories") {
-            $.ajax( {
-              url: '/manage-categories',
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/manage-categories',
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
-        
+        if (page == "Logout") {
+            document.cookie = "username=;type=;";
+            location.assign('/login');
+
+        }
         // isar - here you'll need to add the ajax for the other pages (cards,profile,add api, etc)
         // here's an example:
         if (page == "Latest APIs") {  //here you need to specify the *exact* page name from the sidebar
-            $.ajax( {
-              url: '/latest-apis', // here you put the url path that will retrive the page
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/latest-apis', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
         if (page == "Best Rated APIs") {  //here you need to specify the *exact* page name from the sidebar
-            $.ajax( {
-              url: '/best-rated-apis', // here you put the url path that will retrive the page
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/best-rated-apis', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
         if (page == "Random APIs") {  //here you need to specify the *exact* page name from the sidebar
-            $.ajax( {
-              url: '/random-apis', // here you put the url path that will retrive the page
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/random-apis', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
         if (page == "Bookmarks") {  //here you need to specify the *exact* page name from the sidebar
-            $.ajax( {
-              url: '/bookmarks', // here you put the url path that will retrive the page
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/bookmarks', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
 
         if (page == "Add API") {  //here you need to specify the *exact* page name from the sidebar
-            $.ajax( {
-              url: '/add-api', // here you put the url path that will retrive the page
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/add-api', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
         if (page == "Profile") {  //here you need to specify the *exact* page name from the sidebar
-            $.ajax( {
-              url: '/profile', // here you put the url path that will retrive the page
-              type: 'GET',
-              contenttype: 'html',
-                success: function(data) {
+            $.ajax({
+                url: '/profile', // here you put the url path that will retrive the page
+                type: 'GET',
+                contenttype: 'html',
+                success: function (data) {
                     console.log(data);
                     $("#main").html(data);
-                }  
+                }
             })
         }
     })

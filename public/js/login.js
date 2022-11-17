@@ -34,7 +34,9 @@ $(document).ready(function () {
           document.cookie = `type=${data.userType}`;
           location.assign("/");
         } else {
-          location.reload();
+          $('#validation').text(data.message);
+          $('#username').val('');
+          $('#password').val('');
         }
       }
     });

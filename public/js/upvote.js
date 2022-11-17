@@ -33,6 +33,15 @@ $(document).ready(function () {
                 },
                 success: ({ data }) => {
                     console.log(data)
+                    $.ajax({
+                        url: `/bookmarks`, // here you put the url path that will retrive the page
+                        type: 'GET',
+                        contenttype: 'html',
+                        success: function (data) {
+                            console.log(data);
+                            $("#main").html(data);
+                        }
+                    })
                 }
             })
         });
