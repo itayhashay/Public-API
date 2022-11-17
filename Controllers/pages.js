@@ -16,16 +16,16 @@ const middleware = (req, res, next) => {
 }
 
 const homePageMiddleware = (req, res, next) => {
-    if (req.cookies.type.toLowerCase() == 'client')
+    if (req.cookies.type && req.cookies.type.toLowerCase() == 'client')
         next();
-    else if (req.cookies.type.toLowerCase() == 'admin')
+    else if (req.cookies.type && req.cookies.type.toLowerCase() == 'admin')
         res.redirect('/admin');
     else
         res.redirect('/login');
 }
 
 const isAdmin = (req, res, next) => {
-    if (req.cookies.type.toLowerCase() == 'admin')
+    if (req.cookies.type && req.cookies.type.toLowerCase() == 'admin')
         next();
     else
         res.redirect('/login');
