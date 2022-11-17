@@ -10,6 +10,7 @@ function Validate() {
     document.getElementById("gender").value == 1 ? "Male" : "Female";
   const birthday = document.getElementById("birthday").value;
   var flag = true;
+  //first name
   if (firstName == "") {
     error += "first name cannot be blank\n";
     console.log(error);
@@ -20,6 +21,63 @@ function Validate() {
   } else {
     error += "all good\n";
   }
+  //last name
+  if (lastName == "") {
+    error += "last name cannot be blank\n";
+    console.log(error);
+    flag = false;
+  } else if (lastName.length <= 2) {
+    error += "min 3 char\n";
+    flag = false;
+  } else {
+    error += "all good\n";
+  }
+  //user name
+  if (username == "") {
+    error += "user name cannot be blank\n";
+    flag = false;
+    // } else if (!isuname(uname)) {
+    //   error.push("user name is not valid");
+  } else {
+    error += "all good\n";
+  }
+
+  //password
+  if (password == "") {
+    error += "password cannot be blank\n";
+    flag = false;
+  } else if (password.length <= 7) {
+    error += "min 8 char\n";
+    flag = false;
+  } else {
+    error += "all good\n";
+  }
+  //gender
+  if (gender == "gender") {
+    error += "please select a gender\n";
+    flag = false;
+  } else {
+    error += "all good\n";
+  }
+  //birthday
+  if (birthday == "") {
+    error += "please select birthday\n";
+    flag = false;
+  } else {
+    error += "all good\n";
+  }
+  //email
+  if (email == "") {
+    error += "email cannot be blank\n";
+    flag = false;
+  }
+  // } else if (email.length <= 7) {
+  //   error.push("email is taken\n");
+  //   return false;}
+  else {
+    error += "all good\n";
+  }
+
   if (!flag) {
     var message = document.getElementById("message");
     message.style = "visibility:visible";
