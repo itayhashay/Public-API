@@ -89,7 +89,6 @@ function Validate() {
 $("#sign-up-send")
   .unbind("click")
   .click(function () {
-    debugger;
     const firstName = document.getElementById("firstname").value;
     const lastName = document.getElementById("lastname").value;
     const username = document.getElementById("username").value;
@@ -128,6 +127,7 @@ $("#sign-up-send")
         birthday,
       },
       success: ({ data }) => {
+        debugger;
         console.log(data);
         location.assign("/login");
       },
