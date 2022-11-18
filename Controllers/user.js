@@ -45,14 +45,16 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   let user = await User.find({ username: req.body.username })
-  if (user.length == 1)
+  if (user.length != 0)
     res.send({ data: [], isSuccess: false, message: "Username already taken" });
-  req.body.password = hash(req.body.password);
-  req.body.birthday = Date.parse(req.body.birthday);
-  const newUser = new User(req.body);
-  await newUser.save();
-  delete newUser['_doc']["password"];
-  res.send({ data: newUser, isSuccess: true, message: "Success" });
+  else {
+    req.body.password = hash(req.body.password);
+    req.body.birthday = Date.parse(req.body.birthday);
+    const newUser = new User(req.body);
+    await newUser.save();
+    delete newUser['_doc']["password"];
+    res.send({ data: newUser, isSuccess: true, message: "Success" });
+  }
 })
 
 router.post('/login', async (req, res) => {
