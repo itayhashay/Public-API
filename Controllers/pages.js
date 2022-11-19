@@ -137,7 +137,7 @@ router.get('/admin', isAdmin, async (req, res) => {
     let analytics = {
         total_apis: apis_count,
         total_users: users_count,
-        total_upvotes: sum_upvotes[0]._id == null ? 0 : sum_upvotes[0].sum
+        total_upvotes: sum_upvotes[0] == null ? 0 : sum_upvotes[0].sum
     }
     res.render('dashboard',
         {
