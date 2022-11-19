@@ -201,7 +201,7 @@ nav.close li a .link-name{
 
 body.dark .nav-links li a:hover i,
 body.dark .nav-links li a:hover .link-name
-,body.dark .form-check-label{
+.body.dark .form-check-label{
     color: #FFF;
 }
 body.dark #main .table-title{
@@ -748,3 +748,8 @@ svg{
     height: 100%;
     position: absolute;
 }
+
+.addScroll{
+    overflow-y:auto;
+    height: 200px;
+  }
