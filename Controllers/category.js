@@ -35,9 +35,14 @@ router.get('/search', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const newCategory = new Category(req.body);
-  await newCategory.save();
-  res.send({ data: newCategory });
+  const category = await Category.find({ name: req.body.name })
+  if (category.length != 0)
+    res.send({ data: [], isSuccess: false, message: "Category name already exist" });
+  else {
+    const newCategory = new Category(req.body);
+    await newCategory.save();
+    res.send({ data: newCategory, isSuccess: true, message: "Success" });
+  }
 })
 
 router.put('/:id', async (req, res) => {

@@ -10,19 +10,30 @@ $(document).ready(function () {
         description
       }
       console.log(data);
-      $.ajax({
-        url: "/category", // here you put the url path that will retrive the page
-        type: "POST",
-        contenttype: "application/json",
-        dataType: "json",
-        data: {
-          name,
-          description
-        },
-        success: ({ data }) => {
-          console.log(data);
-        }
-      });
+      if (name != '' && description != '') {
+        $.ajax({
+          url: "/category", // here you put the url path that will retrive the page
+          type: "POST",
+          contenttype: "application/json",
+          dataType: "json",
+          data: {
+            name,
+            description
+          },
+          success: (data) => {
+            if (data.isSuccess) {
+              location.reload();
+            } else {
+              $('#validation').text(data.message);
+              $('#name').val('');
+              $('#desc').val('');
+            }
+          }
+        });
+      } else {
+        $('#validation').text("Please fill all the inputs");
+      }
+      return false;
     });
   });
 
