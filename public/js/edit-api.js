@@ -21,7 +21,6 @@ $(document).ready(function () {
             category: category
           },
           success: ({ data }) => {
-            console.log(data);
             location.assign('/')
           }
         });

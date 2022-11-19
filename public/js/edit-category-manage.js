@@ -9,7 +9,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })

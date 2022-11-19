@@ -21,8 +21,6 @@ $(document).ready(function () {
           data["birthday"] = birthday;
         if (gender != "Gender")
           data["gender"] = gender == 1 ? "Male" : "Female";
-        console.log(data);
-        debugger;
         $.ajax({
           url: `/user/${id}`, // here you put the url path that will retrive the page
           type: "PUT",
@@ -30,7 +28,6 @@ $(document).ready(function () {
           dataType: "json",
           data,
           success: ({ data }) => {
-            console.log(data);
             location.assign('/');
           }
         });

@@ -4,7 +4,6 @@ $(document).ready(function () {
         var $this = $(this);
         $this.on("click", function () {
             var id = $(this).data('id')
-            console.log('/api/upvote/' + id);
             $.ajax({
                 url: '/api/upvote/' + id, // here you put the url path that will retrive the page
                 type: 'POST',
@@ -12,7 +11,6 @@ $(document).ready(function () {
                 dataType: "json",
                 data: {},
                 success: ({ data }) => {
-                    console.log(data)
                     $("#" + data._id).html(data.upvotes);
                 }
             })
@@ -22,7 +20,6 @@ $(document).ready(function () {
         var $this = $(this);
         $this.on("click", function () {
             var id = $(this).data('id')
-            console.log('/bookmark/' + id);
             $.ajax({
                 url: '/bookmark', // here you put the url path that will retrive the page
                 type: 'POST',
@@ -32,13 +29,11 @@ $(document).ready(function () {
                     apiId: id
                 },
                 success: ({ data }) => {
-                    console.log(data)
                     $.ajax({
                         url: `/bookmarks`, // here you put the url path that will retrive the page
                         type: 'GET',
                         contenttype: 'html',
                         success: function (data) {
-                            console.log(data);
                             $("#main").html(data);
                         }
                     })

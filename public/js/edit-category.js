@@ -5,7 +5,6 @@ $(document).ready(function () {
     $this.on("click", function () {
       const description = document.getElementById("desc").value;
       const id = $(".id").data("id");
-      debugger;
       if (description != '') {
         $.ajax({
           url: `/category/${id}`, // here you put the url path that will retrive the page
@@ -16,7 +15,6 @@ $(document).ready(function () {
             description
           },
           success: ({ data }) => {
-            console.log(data);
             location.assign('/');
           }
         });

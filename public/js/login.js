@@ -14,7 +14,6 @@ $(document).ready(function () {
     });
 
   $('#btn-send').unbind('click').click(function () {
-    debugger;
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     $.ajax({
@@ -27,8 +26,6 @@ $(document).ready(function () {
         password
       },
       success: ({ data }) => {
-        debugger;
-        console.log(data);
         if (data.loggedIn) {
           document.cookie = `username=${data.username}`;
           document.cookie = `type=${data.userType}`;

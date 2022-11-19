@@ -8,7 +8,6 @@ const express = require('express'),
 
 router.get('/', async (req, res) => {
   const apis = await Api.find({});
-  console.log(apis);
   res.send({ data: apis })
 })
 

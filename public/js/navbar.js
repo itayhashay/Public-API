@@ -20,8 +20,6 @@ $(document).ready(function () {
 
         // page is the page to load
         var page = $(this).find("span").text();
-        //print the page name
-        console.log('loading the ' + $(this).find("span").text() + 'page using ajax');
 
         if (page == "Dashboard") {
             $.ajax({
@@ -29,7 +27,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -40,7 +37,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -51,7 +47,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -62,7 +57,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -80,7 +74,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -91,7 +84,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -102,7 +94,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -113,7 +104,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -125,7 +115,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })
@@ -136,7 +125,6 @@ $(document).ready(function () {
                 type: 'GET',
                 contenttype: 'html',
                 success: function (data) {
-                    console.log(data);
                     $("#main").html(data);
                 }
             })

@@ -2,11 +2,10 @@ $("#logout-btn")
   .unbind("click")
   .click(function () {
     deleteAllCookies();
-    console.log("hi");
     window.location.href = "/login";
   });
 
-  
+
 function deleteAllCookies() {
   var cookies = document.cookie.split(";");
   for (var i = 0; i < cookies.length; i++) {

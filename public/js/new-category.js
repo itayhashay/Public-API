@@ -9,7 +9,6 @@ $(document).ready(function () {
         name,
         description
       }
-      console.log(data);
       if (name != '' && description != '') {
         $.ajax({
           url: "/category", // here you put the url path that will retrive the page

@@ -10,7 +10,6 @@ $(document).ready(function () {
       const email = document.getElementById("emailAddr").value;
       let gender = document.getElementById("gender").value;
       const birthday = document.getElementById("birthday").value;
-      debugger;
 
       if (username != '' && email != '' && gender != 'Gender' && birthday != '' && password != '' && lastName != '' && firstName != '') {
         gender = gender == 1 ? "Male" : "Female";
@@ -30,7 +29,6 @@ $(document).ready(function () {
           },
           success: (data) => {
             if (data.isSuccess) {
-              console.log(data);
               location.assign('/');
             } else {
               $('#validation').text(data.message);
