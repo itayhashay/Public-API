@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
   req.body.uploadBy = req.cookies.username ? req.cookies.username : "itayhashay";
   const newApi = new Api(req.body);
   await newApi.save();
-  tweet("New Api added today! Come checkout: " +req.body.name+" under the category: "+req.body.category)
+  tweet("New Api added today! Come checkout: " + req.body.name + " under the category: " + req.body.category)
   res.send({ data: newApi });
 })
 

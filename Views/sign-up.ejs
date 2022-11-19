@@ -1,20 +1,12 @@
 <link rel="stylesheet" href="css\submit.css" />
-<script
-  src="https://code.jquery.com/jquery-3.6.1.min.js"
-  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-  crossorigin="anonymous"
-></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <div class="container">
   <div id="section" class="h-100">
     <section class="contact-wrap">
       <form action="" class="contact-form">
         <h3 id="title">Sign up</h3>
-        <div
-          class="alert alert-danger"
-          role="alert"
-          style="visibility: hidden"
-          id="message"
-        ></div>
+        <div class="alert alert-danger" role="alert" style="visibility: hidden" id="message"></div>
         <div class="col-sm-6">
           <div class="input-block">
             <label for="">First Name</label>
@@ -41,15 +33,10 @@
         </div>
         <div class="col-sm-6">
           <div class="input-block" id="b-input">
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              id="gender"
-            >
+            <select class="form-select" aria-label="Default select example" id="gender">
               <option selected>Gender</option>
               <option value="1">Male</option>
               <option value="2">Female</option>
-              <option value="3">Other</option>
             </select>
           </div>
         </div>
@@ -66,6 +53,10 @@
         </div>
         <div class="col-sm-12">
           <button class="square-button" id="sign-up-send">Send</button>
+        </div>
+        <div class="col-sm-12">
+          <div style="color: red" id="validation">
+          </div>
         </div>
       </form>
     </section>

@@ -8,36 +8,39 @@ $(document).ready(function () {
       const lastName = document.getElementById("lastname").value;
       const password = document.getElementById("password").value;
       const email = document.getElementById("emailAddr").value;
-      const gender = document.getElementById("gender").value == 1 ? "Male" : "Female";
+      let gender = document.getElementById("gender").value;
       const birthday = document.getElementById("birthday").value;
-      data = {
-        username,
-        firstName,
-        lastName,
-        password,
-        email,
-        gender,
-        birthday
+      debugger;
+
+      if (username != '' && email != '' && gender != 'Gender' && birthday != '' && password != '' && lastName != '' && firstName != '') {
+        gender = gender == 1 ? "Male" : "Female";
+        $.ajax({
+          url: "/user", // here you put the url path that will retrive the page
+          type: "POST",
+          contenttype: "application/json",
+          dataType: "json",
+          data: {
+            username,
+            firstName,
+            lastName,
+            password,
+            email,
+            gender,
+            birthday
+          },
+          success: (data) => {
+            if (data.isSuccess) {
+              console.log(data);
+              location.assign('/');
+            } else {
+              $('#validation').text(data.message);
+            }
+          }
+        });
+      } else {
+        $('#validation').text("Please fill all the empty inputs");
       }
-      console.log(data);
-      $.ajax({
-        url: "/user", // here you put the url path that will retrive the page
-        type: "POST",
-        contenttype: "application/json",
-        dataType: "json",
-        data: {
-          username,
-          firstName,
-          lastName,
-          password,
-          email,
-          gender,
-          birthday
-        },
-        success: ({ data }) => {
-          console.log(data);
-        }
-      });
+      return false;
     });
   });
 
