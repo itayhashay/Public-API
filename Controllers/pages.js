@@ -4,6 +4,7 @@ const User = require("../Models/user"),
     Category = require("../Models/category"),
     express = require("express"),
     expressLayouts = require("express-ejs-layouts"),
+    getJoke = require("../Script/get-joke"),
     router = express.Router();
 
 router.use(expressLayouts);
@@ -281,8 +282,11 @@ router.get('/bookmarks', middleware, async (req, res) => {
 router.get("/profile", middleware, async (req, res) => {
     let username = req.cookies.username ? req.cookies.username : "itayhashay";
     let user = await User.find({ username: username });
+    let jokedata = await getJoke()
+    let joke = `${jokedata.data.setup}\n${jokedata.data.punchline}`
     res.render("profile", {
         user: user[0],
+        joke: joke,
         layout: "Layouts/main-div.ejs",
     });
 });
