@@ -130,6 +130,29 @@ router.get("/add-user", middleware, async (req, res) => {
 
 // admin path
 router.get('/admin', isAdmin, async (req, res) => {
+    if (req.query.text){
+    let { name, uploadby, category, text } = req.query;
+    let query = [];
+    if (text !== undefined) {
+        if (name == 'true') {
+            query = [...query, { name: { $regex: text, $options: 'i' } }]
+        }
+        if (uploadby == 'true') {
+            query = [...query, { uploadBy: { $regex: text, $options: 'i' } }]
+        }
+        if (category == 'true') {
+            query = [...query, { category: { $regex: text, $options: 'i' } }]
+        }
+    }
+    let apis = query.length == 0 ? await Api.find({}) : await Api.find({
+        $or: query
+    });
+    res.render("Cards", {
+        cards: apis,
+        layout: "Layouts/admin.ejs",
+    });
+}
+else{
     const apis_count = await Api.countDocuments();
     const users_count = await User.countDocuments();
     const sum_upvotes = await Api.aggregate([
@@ -145,7 +168,7 @@ router.get('/admin', isAdmin, async (req, res) => {
             analytics: analytics,
             layout: 'Layouts/admin.ejs'
         }
-    )
+    )}
 })
 
 router.get('/dashboard', isAdmin, async (req, res) => {
